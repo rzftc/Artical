@@ -37,7 +37,7 @@ EN.InstantFormat$\mathrm{<}$ENInstantFormat$\mathrm{>}$$\mathrm{<}$Enabled$\math
 
 
 
-\includegraphics*[width=5.63in, height=2.63in, keepaspectratio=false]{image59}
+\includegraphics*[width=5.63in, height=2.63in, keepaspectratio=false]{image1}
 
 
 
@@ -266,7 +266,7 @@ P_{j} (t)=\alpha _{j} (t)P_{j}^{r}
 
 定频空调通常采用bang-bang控制进行启停控制，控制规律为：
 \begin{equation} \label{4)} 
-\alpha _{j} (t)=\left\{\begin{array}{c} {0T_{j} (t)\le T_{jset} -\frac{\Delta T_{j} }{2} } \\ {1T_{jset} +\frac{\Delta T_{j} }{2} \le T_{j} (t)} \\ {\alpha _{j} (t-1)T_{jset} -\frac{\Delta T_{j} }{2} \le T_{j} (t)\le T_{jset} +\frac{\Delta T_{j} }{2} } \end{array}\right.  
+\alpha _{j} (t)=\left\{\begin{array}{l} {0{\rm \; \; \; \; \; \; \; \; \; \; \; \; \; \; }T_{j} (t)\le T_{jset} -\frac{\Delta T_{j} }{2} } \\ {1{\rm \; \; \; \; \; \; \; \; \; \; \; \; \; \; }T_{jset} +\frac{\Delta T_{j} }{2} \le T_{j} (t)} \\ {\alpha _{j} (t-1)T_{jset} -\frac{\Delta T_{j} }{2} \le T_{j} (t)\le T_{jset} +\frac{\Delta T_{j} }{2} } \end{array}\right.  
 \end{equation} 
 式中，$T_{jset} \Delta T_{j} $分别为第\textit{j}台空调的设定温度和温度控制滞环环宽。
 
@@ -453,13 +453,13 @@ f_{in} (t_{in} )=\left\{\begin{array}{ll} {\frac{1}{\sqrt{2\pi \sigma _{in} } } 
 \end{equation} 
 式中，$t_{in} $表示入网的时间，$\mu _{in} $表示入网时间期望值，$\sigma _{in} $表示入网时间标准差。
 
-\noindent \includegraphics*[width=3.79in, height=2.84in, keepaspectratio=false]{image60}
+\noindent \includegraphics*[width=3.79in, height=2.84in, keepaspectratio=false]{image2}
 
 \noindent 图 2-8 EV入网时间概率分布
 
 通常情况下，一般认为用户在次日离家出发上班的时间作为离开系统时间，这个时间一般发生在6-8点之间，同样近似正态分布拟合示意图如图 2-9所示，其概率密度函数如图 2-9所示。式中，$t_{dep} $表示离网的时间，$\mu _{dep} $表示离网期望值，$\sigma _{dep} $表示离网时间标准差。
 
-\noindent \includegraphics*[width=3.86in, height=2.90in, keepaspectratio=false]{image61}
+\noindent \includegraphics*[width=3.86in, height=2.90in, keepaspectratio=false]{image3}
 
 \noindent 图 2-9 EV离网时间概率分布
 \begin{equation} \label{31)} 
@@ -508,7 +508,7 @@ E_{in} =C_{{\rm EV}} -dH_{km}
 
 因此涵盖空调单体状态转移与整体调节指令分解算法的微分-代数方程组为：
 \begin{equation} \label{38)} 
-\begin{array}{l} {Soc_{1} \left(k+1\right)=\alpha _{1} Soc_{1} \left(k\right)+\beta _{1} \Delta P_{1} \left(k\right){\rm +}\gamma _{1} } \\ {...} \\ {Soc_{n} \left(k+1\right)=\alpha _{n} Soc_{n} \left(k\right)+\beta _{n} \Delta P_{n} \left(k\right){\rm +}\gamma } \\ {\Delta P_{j} \left(k\right)=\left(\frac{1-\alpha _{j} }{\beta _{j} } \right)\frac{\Delta P_{S} +\sum _{j=1}^{n}\frac{\gamma _{j} }{\beta _{j} }  }{\sum _{j=1}^{n}\left(\frac{1-\alpha _{j} }{\beta _{j} } \right) } -\frac{\gamma _{j} }{\beta _{j} } } \end{array} 
+\begin{array}{l} {Soc_{1} \left(k+1\right)=\alpha _{1} Soc_{1} \left(k\right)+\beta _{1} \Delta P_{1} \left(k\right){\rm +}\gamma _{1} } \\ {...} \\ {Soc_{n} \left(k+1\right)=\alpha _{n} Soc_{n} \left(k\right)+\beta _{n} \Delta P_{n} \left(k\right){\rm +}\gamma _{n} } \\ {\Delta P_{j} \left(k\right)=\left(\frac{1-\alpha _{j} }{\beta _{j} } \right)\frac{\Delta P_{S} +\sum _{j=1}^{n}\frac{\gamma _{j} }{\beta _{j} }  }{\sum _{j=1}^{n}\left(\frac{1-\alpha _{j} }{\beta _{j} } \right) } -\frac{\gamma _{j} }{\beta _{j} } } \end{array} 
 \end{equation} 
 
 选择空调集群平均SOC作为群体状态变量，由于各时刻各空调SOC相同，则集群平均SOC即为各单体SOC，基于上式简化可得空调集群状态转移方程为：
@@ -540,7 +540,7 @@ T_{j,max^{{'} } } -T_{j,min^{{'} } } =2\Delta T_{set}
 
 采用对电动汽车个体电量偏差度归一化的方法进行聚合，使区域内不同类型电动汽车之间存在可比性。电量偏差度归一化方法如下：
 
-首先，需要对每台电动汽车构建其响应特性曲线$P_{res,i} =d_{i} (\lambda ^{*} )$表征其灵活性，本节用\includegraphics*[width=0.41in, height=0.25in, keepaspectratio=false]{image62}表示响应特性曲线；随后，将各电动汽车的响应特性曲线相加、排序形成总响应特性曲线$D(\lambda )=\sum _{i=1}^{N}d_{i}  \left(\lambda \right)$，其中$N$为参与电网互动的电动汽车数量，假设电动汽车总目标功率为$P_{tar} $，可以通过$\lambda ^{*} =D^{-1} (P_{{\rm tar}} )$求得电量偏差度的归一目标；最后，将$\lambda ^{*} $向所有电动汽车进行广播，各电动汽车根据其自身响应特性曲线对$\lambda ^{*} $进行响应，可根据得到第i台电动汽车的响应功率。
+首先，需要对每台电动汽车构建其响应特性曲线$P_{res,i} =d_{i} (\lambda ^{*} )$表征其灵活性，本节用\includegraphics*[width=0.41in, height=0.25in, keepaspectratio=false]{image4}表示响应特性曲线；随后，将各电动汽车的响应特性曲线相加、排序形成总响应特性曲线$D(\lambda )=\sum _{i=1}^{N}d_{i}  \left(\lambda \right)$，其中$N$为参与电网互动的电动汽车数量，假设电动汽车总目标功率为$P_{tar} $，可以通过$\lambda ^{*} =D^{-1} (P_{{\rm tar}} )$求得电量偏差度的归一目标；最后，将$\lambda ^{*} $向所有电动汽车进行广播，各电动汽车根据其自身响应特性曲线对$\lambda ^{*} $进行响应，可根据得到第i台电动汽车的响应功率。
 
 根据以上方法，可以在不同电动汽车之间分配总的目标功率，从而实现准确的功率跟踪。$P_{{\rm tar}} $取决于不同场景，$\lambda ^{*} $为控制信号，其取值范围为[-1,1]。
 
@@ -573,7 +573,7 @@ S'_{i} =\left\{\begin{array}{ll} {\frac{S_{i} +1}{2} \in [0,1],} & {{\rm state\;
 
 \noindent 图 2-11 电动汽车聚合响应特性曲线
 
-求曲线构建完成后，需要确定响应特性曲线的特征功率值，也即$P_{ON} $。在电动汽车响应特性曲线中，$P_{ON} $计算公式为：
+当曲线构建完成后，需要确定响应特性曲线的特征功率值，也即$P_{ON} $。在电动汽车响应特性曲线中，$P_{ON} $计算公式为：
 \begin{equation} \label{47)} 
 P_{{\rm ON}} =P_{char}^{}  
 \end{equation} 
@@ -742,11 +742,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 空调单体的室内温度变化与单体的制冷功率变化如图 2-14、图 2-15所示。
 
-\noindent \includegraphics*[width=5.42in, height=2.44in, keepaspectratio=false]{image63}
+\noindent \includegraphics*[width=5.42in, height=2.44in, keepaspectratio=false]{image5}
 
 \noindent 图 2-14 空调单体室内温度变化
 
-\noindent \includegraphics*[width=5.42in, height=2.44in, keepaspectratio=false]{image64}
+\noindent \includegraphics*[width=5.42in, height=2.44in, keepaspectratio=false]{image6}
 
 \noindent 图 2-15 空调单体制冷功率变化
 
@@ -754,11 +754,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 空调单体与聚合体的SOC与聚合功率对比如图 2-16、图 2-17所示。
 
-\noindent \includegraphics*[width=5.21in, height=2.34in, keepaspectratio=false]{image65}
+\noindent \includegraphics*[width=5.21in, height=2.34in, keepaspectratio=false]{image7}
 
 \noindent 图 2-16 空调单体与聚合体SOC对比
 
-\noindent \includegraphics*[width=5.31in, height=2.39in, keepaspectratio=false]{image66}
+\noindent \includegraphics*[width=5.31in, height=2.39in, keepaspectratio=false]{image8}
 
 \noindent 图 2-17 空调聚合制冷功率与基线功率
 
@@ -766,11 +766,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 工作区电动汽车的聚合运行功率和居民区的电动汽车聚合功率如图 2-18、图 2-19所示。
 
-\noindent \includegraphics*[width=5.31in, height=2.12in, keepaspectratio=false]{image67}
+\noindent \includegraphics*[width=5.31in, height=2.12in, keepaspectratio=false]{image9}
 
 \noindent 图 2-18 工作区电动汽车聚合运行功率
 
-\noindent \includegraphics*[width=5.42in, height=2.17in, keepaspectratio=false]{image68}
+\noindent \includegraphics*[width=5.42in, height=2.17in, keepaspectratio=false]{image10}
 
 \noindent 图 2-19 居民区电动汽车聚合运行功率
 
@@ -778,11 +778,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 取第800台电动汽车进行分析，有关电动汽车单体运行状态的仿真结果如图 2-20与图 2-21所示。
 
-\noindent \includegraphics*[width=5.83in, height=2.33in, keepaspectratio=false]{image69}
+\noindent \includegraphics*[width=5.83in, height=2.33in, keepaspectratio=false]{image11}
 
 \noindent 图 2-20 电动汽车单体电量偏差度与$\lambda ^{*} $对比
 
-\noindent \includegraphics*[width=5.83in, height=2.33in, keepaspectratio=false]{image70}
+\noindent \includegraphics*[width=5.83in, height=2.33in, keepaspectratio=false]{image12}
 
 \noindent 图 2-21 电动汽车单体时间电量与基线电量
 
@@ -797,7 +797,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 空调聚合模型制冷功率与单体累加制冷功率对比如图 2-22所示。
 
-\noindent \includegraphics*[width=5.31in, height=2.39in, keepaspectratio=false]{image71}
+\noindent \includegraphics*[width=5.31in, height=2.39in, keepaspectratio=false]{image13}
 
 \noindent 图 2-22 空调聚合模型制冷功率与单体累加制冷功率对比
 
@@ -805,27 +805,23 @@ EV & 数量（台） & 1000 \\ \hline
 
 电动汽车聚合体功率与单体总体功率的对比如图 2-23所示，（1）聚合模型功率与实际统计功率波形走势高度一致且均在晚高峰达到峰值，表明所建模型能较好反映集群实时功率变化趋势；（2）黑色实线始终包络于红色虚线之上且存在微小幅值偏差，这是由于单体功率累加了所有在网充电负荷，而聚合模型仅纳入参与需求响应的调节负荷，部分未参与用户的物理负荷未计入灵活性资源池，导致聚合模型计算功率略低于单体总功率。
 
-\noindent \includegraphics*[width=5.52in, height=2.21in, keepaspectratio=false]{image72}
+\noindent \includegraphics*[width=5.52in, height=2.21in, keepaspectratio=false]{image14}
 
 \noindent 图 2-23 电动汽车聚合体功率与单体功率之和
 
-取同一型号的物理参数相同的电动汽车（以比亚迪秦PLUS DM-i为例），展示聚合电量偏差度以及单体电量偏差度的变化情况如图 2-24所示。由图可知，同组的电量偏差度与单体电量偏差度近似相同，且围绕电网指令信号lamda做上下波动。因此，可验证在单体电动汽车物理模型参数相同时的聚合有效程度。
+取同一型号的物理参数相同的电动汽车（以比亚迪秦PLUS DM-i为例），展示聚合电量偏差度以及单体电量偏差度的变化情况如图 2-24所示。由图可知，同组的电量偏差度与单体电量偏差度近似相同，且围绕电网指令信号$\lambda $做上下波动。因此，可验证在单体电动汽车物理模型参数相同时的聚合有效程度。
 
-\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image73}
+\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image15}
 
 \noindent 图 2-24 聚合电量偏差度以及单体电量偏差度
 
 当电动汽车的型号以及物理参数各不相同时，电动汽车集群的聚合电量偏差度以及控制信号如图 2-25所示。
 
-\noindent \includegraphics*[width=4.66in, height=2.56in, keepaspectratio=false]{image74}
+\noindent \includegraphics*[width=4.66in, height=2.56in, keepaspectratio=false]{image16}
 
 \noindent 图 2-25 聚合电量偏差度与控制信号对比
 
-由图 2-25可知：（1）聚合电量偏差度与控制信号呈现较强的时序耦合特性，控制信号有效导引集群状态演化轨迹，聚合电量偏差度的变化趋势紧密跟随控制信号波动，表明基于状态排序的控制策略能将电动汽车高维集群映射为低维模型，单一信号即可实现对大规模电动汽车的有效调控；（2）电动汽车集群响应具有显著的物理惯性与滞后特征，聚合电量偏差度并未在初始时刻即刻重合于控制信号，而是经动态调整后于23时左右达到高度拟合状态，这是受限于电池充电功率的物理边界以及各单体入离网时间的差异，集群能量累积过程具有时间依赖性，导致宏观状态变量对控制指令的跟踪存在动态过渡期，体现了储能元件能量型负载的固有特性。由图 2-28可知，居民区用户呈现?晚归早出?的典型出行规律，其接入时刻服从正态分布且概率密度函数呈单峰特性。图中入网时间主要集中在17:00至20:00之间，峰值出现在18:00左右，这是因为该时段在物理上对应了下班通勤高峰；右侧离网时间则呈现出明显的跨日特征，集中分布在次日凌晨及清晨时段，这是因为居民用户具有夜间长时间停泊、次日离家上班的行为模式。这种分布形态为后续聚合体调节潜力的评估提供了时间维度的边界条件，决定了可控资源的在线窗口。
-
-\includegraphics*[width=5.83in, height=2.33in, keepaspectratio=false]{image75}
-
-图 2-28 居民区电动汽车集群入离网时间分布
+由图 2-25可知：（1）聚合电量偏差度与控制信号呈现较强的时序耦合特性，控制信号有效导引集群状态演化轨迹，聚合电量偏差度的变化趋势紧密跟随控制信号波动，表明基于状态排序的控制策略能将电动汽车高维集群映射为低维模型，单一信号即可实现对大规模电动汽车的有效调控；（2）电动汽车集群响应具有显著的物理惯性与滞后特征，聚合电量偏差度并未在初始时刻即刻重合于控制信号，而是经动态调整后于23时左右达到高度拟合状态，这是受限于电池充电功率的物理边界以及各单体入离网时间的差异，集群能量累积过程具有时间依赖性，导致宏观状态变量对控制指令的跟踪存在动态过渡期，体现了储能元件能量型负载的固有特性。
 
 
 \paragraph{ 调控指令跟踪性能分析}
@@ -834,11 +830,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 空调聚合体的响应功率和电网调节指令的对比如图 2-27所示。
 
-\noindent \includegraphics*[width=5.62in, height=2.53in, keepaspectratio=false]{image76}
+\noindent \includegraphics*[width=5.62in, height=2.53in, keepaspectratio=false]{image17}
 
 \noindent 图 2-26 空调单体响应功率
 
-\noindent \includegraphics*[width=5.62in, height=2.53in, keepaspectratio=false]{image77}
+\noindent \includegraphics*[width=5.62in, height=2.53in, keepaspectratio=false]{image18}
 
 \noindent 图 2-27 空调聚合体的响应功率和电网调节指令对比
 
@@ -846,7 +842,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 电动汽车集群功率跟踪情况如图 2-28所示。
 
-\noindent \includegraphics*[width=5.42in, height=2.17in, keepaspectratio=false]{image78}
+\noindent \includegraphics*[width=5.42in, height=2.17in, keepaspectratio=false]{image19}
 
 \noindent 图 2-28 电动汽车集群功率跟踪
 
@@ -859,7 +855,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 空调聚合体在不同电价下的聚合制冷功率如图 2-29所示。
 
-\noindent \includegraphics*[width=5.00in, height=3.00in, keepaspectratio=false]{image79}
+\noindent \includegraphics*[width=5.00in, height=3.00in, keepaspectratio=false]{image20}
 
 \noindent 图 2-29 空调聚合体在不同电价下的聚合制冷功率
 
@@ -867,7 +863,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 不同激励下居民区电动汽车聚合体运行功率如图 2-30所示。
 
-\noindent \includegraphics*[width=5.64in, height=2.35in, keepaspectratio=false]{image80}
+\noindent \includegraphics*[width=5.64in, height=2.35in, keepaspectratio=false]{image21}
 
 \noindent 图 2-30 不同激励下居民区电动汽车聚合体运行功率
 
@@ -875,11 +871,11 @@ EV & 数量（台） & 1000 \\ \hline
 
 在不同激励电价下，空调与电动汽车响应特性如图 2-31、图 2-32所示。
 
-\noindent \includegraphics*[width=3.83in, height=2.40in, keepaspectratio=false]{image81}
+\noindent \includegraphics*[width=3.83in, height=2.40in, keepaspectratio=false]{image22}
 
 \noindent 图 2-31 不同激励水平下空调聚合功率响应
 
-\noindent \includegraphics*[width=3.91in, height=2.44in, keepaspectratio=false]{image82}
+\noindent \includegraphics*[width=3.91in, height=2.44in, keepaspectratio=false]{image23}
 
 \noindent 图 2-32 不同激励水平下电动汽车聚合功率响应
 
@@ -887,7 +883,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 为了验证用户失约行为对聚合功率的影响，本文构建了典型的用户提前离网违约场景。考虑到用户用车需求的不确定性，设定电动汽车集群中存在30\%的用户具有失约倾向。对于这部分用户，其实际离网时间将早于与聚合商约定的合约离网时间，提前离网的时长被设定为服从均值为60分钟、标准差为20分钟的正态分布（$N(60,20^{2} )$）。在仿真逻辑中，聚合商仅依据合约时间估算理论聚合功率，而实际物理功率则由真实的离网时间决定，一旦车辆提前拔枪离网，其功率即刻归零。
 
-\noindent \includegraphics*[width=3.44in, height=2.62in, keepaspectratio=false]{image83}
+\noindent \includegraphics*[width=3.44in, height=2.62in, keepaspectratio=false]{image24}
 
 \noindent 图 2-33 电动汽车失约前后聚合功率对比
 
@@ -1043,7 +1039,7 @@ EV & 数量（台） & 1000 \\ \hline
 0\le Soc\le 1 
 \end{equation} 
 
-在空调运行时，由式\eqref{ZEqnNum775885}可知，在给定调节时长下$\Delta t_{{\rm adj}} $下空调的状态转移过程满足：
+在空调运行时，由式\eqref{ZEqnNum775885}可知，在给定调节时长$\Delta t_{{\rm adj}} $下空调的状态转移过程满足：
 \begin{equation} \label{ZEqnNum461796} 
 Soc\left(t+\Delta t_{{\rm adj}} \right)=\left(1-\alpha \Delta t_{{\rm adj}} \right)Soc\left(t\right)+\beta \Delta t_{{\rm adj}} \Delta P_{pu} \left(t\right)+\gamma \Delta t_{{\rm adj}}  
 \end{equation} 
@@ -1079,7 +1075,7 @@ $\alpha $、$\beta $、$\gamma $的定义如\eqref{ZEqnNum332781}、\eqref{ZEqnNum36905
 
 下限修正为：
 \begin{equation} \label{ZEqnNum288979} 
-\Delta P_{{\rm E,}}^{-} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{{\rm E}}^{-} \left(t\right)>0} \\ {\Delta P_{{\rm E}}^{-} \left(t\right),\Delta P_{{\rm E}}^{-} \left(t\right)\le 0} \end{array}\right.  
+\Delta P_{{\rm E,r}}^{-} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{{\rm E}}^{-} \left(t\right)>0} \\ {\Delta P_{{\rm E}}^{-} \left(t\right),\Delta P_{{\rm E}}^{-} \left(t\right)\le 0} \end{array}\right.  
 \end{equation} 
 
 功率调节能力需同时满足瞬时功率限制（式\eqref{ZEqnNum684857}-式\eqref{ZEqnNum231034}）与能量动态约束（式\eqref{ZEqnNum889132}-式\eqref{ZEqnNum288979}），最终空调调节潜力取二者交集：
@@ -1308,11 +1304,11 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 
 电动汽车聚合体在不同调节时长下的调节能力变化如图 3-5、图 3-6所示。
 
-\noindent \includegraphics*[width=5.94in, height=2.37in, keepaspectratio=false]{image84}
+\noindent \includegraphics*[width=5.94in, height=2.37in, keepaspectratio=false]{image25}
 
 \noindent 图 3-5 电动汽车聚合体在不同调节时长下的上调节能力
 
-\noindent \includegraphics*[width=5.94in, height=2.37in, keepaspectratio=false]{image85}
+\noindent \includegraphics*[width=5.94in, height=2.37in, keepaspectratio=false]{image26}
 
 \noindent 图 3-6 电动汽车聚合体在不同调节时长下的下调节能力
 
@@ -1320,26 +1316,26 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 
 空调聚合体在不同调节时长下的调节能力变化如图 3-7、图 3-8所示。
 
-\noindent \includegraphics*[width=5.94in, height=2.97in, keepaspectratio=false]{image86}
+\noindent \includegraphics*[width=5.94in, height=2.97in, keepaspectratio=false]{image27}
 
 \noindent 图 3-7 空调聚合体在不同调节时长下的上调节能力
 
-\noindent \includegraphics*[width=5.94in, height=2.97in, keepaspectratio=false]{image87}
+\noindent \includegraphics*[width=5.94in, height=2.97in, keepaspectratio=false]{image28}
 
 \noindent 图 3-8 空调聚合体在不同调节时长下的下调节能力
 
-由图 3-7、图 3-8可知，（1）空调集群上下调节能力呈现截然不同的环境温度响应特性，下调节能力与环境温度显著同步，午后12:00---15:00因基线较高，能够提供削减空间从而达到峰值，上调节能力与温度呈明显反相关，高温时段受额定功率边界限制，因此提升空间很小，而夜间及清晨机组处于低频状态，功率较低，具备较大的功率提升潜力；（2）调节时长影响表现为短调节时长高潜力与短调节时长低潜力，5min与15min曲线数值较高且接近，60min曲线则急剧下跌，这是由于空调热惯性远小于化学电池能量密度，短时调节受功率约束主导表现出高聚合潜力，而长时调节受限于建筑热容与舒适度边界，为避免温度越限需大幅降低平均输出，导致调节能力急剧下降。
+由图 3-7、图 3-8可知，（1）空调集群上下调节能力呈现截然不同的环境温度响应特性，下调节能力与环境温度显著同步，午后12:00---15:00因基线较高，能够提供削减空间从而达到峰值，上调节能力与温度呈明显反相关，高温时段受额定功率边界限制，因此提升空间很小，而夜间及清晨机组处于低频状态，功率较低，具备较大的功率提升潜力；（2）调节时长影响表现为短调节时长高潜力与长调节时长低潜力，5min与15min曲线数值较高且接近，60min曲线则急剧下跌，这是由于空调热惯性远小于化学电池能量密度，短时调节受功率约束主导表现出高聚合潜力，而长时调节受限于建筑热容与舒适度边界，为避免温度越限需大幅降低平均输出，导致调节能力急剧下降。
 
 
 \paragraph{ 不同激励下分布式可控资源聚合调节能力对比}
 
 在本节中，取调节时长为5min，分析激励在[0,50]分/kW内变化时的不同分布式可控资源的调节能力变化规律。电动汽车集群在不同激励下的调节能力如图 3-9、图 3-10所示。
 
-\noindent \includegraphics*[width=5.92in, height=2.46in, keepaspectratio=false]{image88}
+\noindent \includegraphics*[width=5.92in, height=2.46in, keepaspectratio=false]{image29}
 
 \noindent 图 3-9 不同激励下电动汽车聚合体上调能力
 
-\noindent \includegraphics*[width=5.92in, height=2.46in, keepaspectratio=false]{image89}
+\noindent \includegraphics*[width=5.92in, height=2.46in, keepaspectratio=false]{image30}
 
 \noindent 图 3-10 不同激励下电动汽车聚合体下调能力
 
@@ -1347,11 +1343,11 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 
 空调集群在不同激励下的调节能力如图 3-11、图 3-12所示。
 
-\noindent \includegraphics*[width=5.42in, height=3.25in, keepaspectratio=false]{image90}
+\noindent \includegraphics*[width=5.42in, height=3.25in, keepaspectratio=false]{image31}
 
 \noindent 图 3-11 不同激励下空调聚合体上调能力
 
-\noindent \includegraphics*[width=5.42in, height=3.25in, keepaspectratio=false]{image91}
+\noindent \includegraphics*[width=5.42in, height=3.25in, keepaspectratio=false]{image32}
 
 \noindent 图 3-12 不同激励下空调聚合体下调能力
 
@@ -1362,7 +1358,7 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 
 该场景的参数设置与2.5.5小节相同。
 
-\noindent \includegraphics*[width=4.34in, height=3.49in, keepaspectratio=false]{image92}
+\noindent \includegraphics*[width=4.34in, height=3.49in, keepaspectratio=false]{image33}
 
 \noindent 图 3-13 计及用户失约的电动汽车聚合可调能力偏差
 
@@ -1373,11 +1369,11 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 
 在不同置信水平下，空调与电动汽车聚合体的可靠调节域如图 3-14、图 3-15所示。
 
-\noindent \includegraphics*[width=4.37in, height=2.62in, keepaspectratio=false]{image93}
+\noindent \includegraphics*[width=4.37in, height=2.62in, keepaspectratio=false]{image34}
 
 \noindent 图 3-14 空调聚合体可靠调节域
 
-\noindent \includegraphics*[width=4.48in, height=2.69in, keepaspectratio=false]{image94}
+\noindent \includegraphics*[width=4.48in, height=2.69in, keepaspectratio=false]{image35}
 
 \noindent 图 3-15 电动汽车聚合体可靠调节域
 
@@ -1389,9 +1385,9 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 在不同电价下，AC与EV的调节能力时变特性同样不同。其具体变化趋势如下所示：
 
 \begin{tabular}{|p{2.5in}|p{2.4in}|} \hline 
-\includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image95} & \includegraphics*[width=3.19in, height=2.39in, keepaspectratio=false]{image96} \\ \hline 
+\includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image36} & \includegraphics*[width=3.19in, height=2.39in, keepaspectratio=false]{image37} \\ \hline 
 图 3-16 不同激励下AC与EV上调互补性变化 & 图 3-17 不同激励下AC与EV下调互补性变化 \\ \hline 
-\includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image97} & \includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image98} \\ \hline 
+\includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image38} & \includegraphics*[width=3.25in, height=2.44in, keepaspectratio=false]{image39} \\ \hline 
 图 3-18 不同激励下AC与EV上调相关性变化 & 图 3-19 不同激励下AC与EV下调相关性变化 \\ \hline 
 \end{tabular}
 
@@ -1400,9 +1396,9 @@ $\rho $值反映了两种聚合体调节能力在时间维度上的变化趋势。若$\rho \to +1$（强正相
 在不同调节时长下，AC与EV的调节能力时变特性同样不同。其具体变化趋势如下所示：
 
 \begin{tabular}{|p{2.5in}|p{2.5in}|} \hline 
-\includegraphics*[width=3.37in, height=2.53in, keepaspectratio=false]{image99} & \includegraphics*[width=3.44in, height=2.58in, keepaspectratio=false]{image100} \\ \hline 
+\includegraphics*[width=3.37in, height=2.53in, keepaspectratio=false]{image40} & \includegraphics*[width=3.44in, height=2.58in, keepaspectratio=false]{image41} \\ \hline 
 图 3-20 不同调节时长下AC与EV上调互补性变化 & 图 3-21 不同调节时长下AC与EV下调互补性变化 \\ \hline 
-\includegraphics*[width=3.44in, height=2.58in, keepaspectratio=false]{image101} & \includegraphics*[width=3.50in, height=2.62in, keepaspectratio=false]{image102} \\ \hline 
+\includegraphics*[width=3.44in, height=2.58in, keepaspectratio=false]{image42} & \includegraphics*[width=3.50in, height=2.62in, keepaspectratio=false]{image43} \\ \hline 
 图 3-22 不同调节时长下AC与EV上调相关性变化 & 图 3-23 不同调节时长下AC与EV下调相关性变化 \\ \hline 
 \end{tabular}
 
@@ -1479,7 +1475,7 @@ Pr(X_{t} \ge \bar{P}_{AC} (t))\ge 1-\alpha
 \begin{equation} \label{4)} 
 \underline{P}_{EV} (t)\le P_{EV} (t)\le \bar{P}_{EV} (t) 
 \end{equation} 
-\includegraphics*[width=4.99in, height=2.72in, keepaspectratio=false]{image103}
+\includegraphics*[width=4.99in, height=2.72in, keepaspectratio=false]{image44}
 
 \noindent 图 4-1 基于分位数回归的聚合体可靠调节域提取
 
@@ -1525,7 +1521,7 @@ C_{op} (t,s)=\sum _{i\in \{ AC,EV,Gen\} }\left(c_{1,i}^{s} P_{i} (t)+c_{2,i}^{s}
 \end{equation} 
 通过引入这一项，优化算法将倾向于寻找那些使得AC和EV在时间上错峰调节或互为备用的调度解。$\lambda _{SDCI} $和$\lambda _{Rho} $为相应的惩罚权重系数，通过调整这两个系数，可以灵活地控制模型对经济性与协同性的偏好程度，理想的调度结果如图 4-2所示。
 
-\noindent \includegraphics*[width=5.28in, height=2.88in, keepaspectratio=false]{image104}
+\noindent \includegraphics*[width=5.28in, height=2.88in, keepaspectratio=false]{image45}
 
 \noindent 图 4-2 基于SDCI与Rho指标的资源协同调节
 
@@ -1541,7 +1537,7 @@ L(P_{AC} ,s)=\rho _{pen} \cdot \left([P_{AC} -P_{AC,max}^{s} ]^{+} +[P_{AC,min}^
 \end{equation} 
 式中，$\rho _{pen} $为违约惩罚单价，$p(s)$为随机场景$s$的联合概率密度函数；$\Omega $为随机变量的支撑集；$\beta $为风险厌恶程度，$\beta $越高，对于风险的厌恶程度越高。该项通过积分形式精确刻画了系统在概率分布尾部的平均风险水平。然而，需要指出的是，由于上述目标函数涉及高维连续概率分布的多重积分运算以及期望算子，且实际物理过程的概率密度函数$p(s)$往往难以获得解析表达，直接对该原始模型进行解析求解在数学上极具挑战性。为使模型具有可解性，需要引入SAA对其进行确定性转化，具体在4.4.2小节中阐述。
 
-\noindent \includegraphics*[width=3.81in, height=2.08in, keepaspectratio=false]{image105}
+\noindent \includegraphics*[width=3.81in, height=2.08in, keepaspectratio=false]{image46}
 
 \noindent 图 4-3 CvaR示意图
 
@@ -1825,11 +1821,11 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 基于4.1节的用户行为不确定性场景生成方法，可得典型场景下的分布式资源调节能力的可靠边界，如图 4-7、图 4-8所示。
 
-\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image106}
+\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image47}
 
 \noindent 图 4-7 空调聚合体95\%置信可靠边界
 
-\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image107}
+\noindent \includegraphics*[width=4.58in, height=2.75in, keepaspectratio=false]{image48}
 
 \noindent 图 4-8 电动汽车聚合体95\%置信可靠边界
 
@@ -1844,7 +1840,7 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 图 4-9给出了$\beta $=100时确定性调度与考虑不确定性的随机调度方案的指标对比，在确定性优化中，设定的可靠边界为所有场景的95\%的置信边界。
 
-\noindent \includegraphics*[width=4.31in, height=2.87in, keepaspectratio=false]{image108}
+\noindent \includegraphics*[width=4.31in, height=2.87in, keepaspectratio=false]{image49}
 
 \noindent 图 4-9 确定性调度与随机调度方案对比
 
@@ -1855,11 +1851,11 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 图 4-10给出了IEEE30节点系统的源荷平衡情况，图 4-11给出了由源荷平衡情况得到的电网调节指令。
 
-\noindent \includegraphics*[width=4.75in, height=2.37in, keepaspectratio=false]{image109}
+\noindent \includegraphics*[width=4.75in, height=2.37in, keepaspectratio=false]{image50}
 
 \noindent 图 4-10 IEEE30节点系统源荷变化
 
-\noindent \includegraphics*[width=4.83in, height=2.42in, keepaspectratio=false]{image110}
+\noindent \includegraphics*[width=4.83in, height=2.42in, keepaspectratio=false]{image51}
 
 \noindent 图 4-11 源荷不平衡量（电网调节指令）
 
@@ -1869,11 +1865,11 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 当$\beta $=1时，空调与电动汽车协同调度方案以及调度量如图 4-12、图 4-13所示。
 
-\noindent \includegraphics*[width=4.79in, height=2.87in, keepaspectratio=false]{image111}
+\noindent \includegraphics*[width=4.79in, height=2.87in, keepaspectratio=false]{image52}
 
 \noindent 图 4-12 协同调度指令跟踪
 
-\noindent \includegraphics*[width=4.90in, height=2.94in, keepaspectratio=false]{image112}
+\noindent \includegraphics*[width=4.90in, height=2.94in, keepaspectratio=false]{image53}
 
 \noindent 图 4-13 AC与EV协同调度量对比
 
@@ -1886,14 +1882,14 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 针对不同的风险厌恶程度，调度方案的安全性与经济性对比如图 4-14所示。
 
-\noindent \includegraphics*[width=5.44in, height=2.42in, keepaspectratio=false]{image113}
+\noindent \includegraphics*[width=5.44in, height=2.42in, keepaspectratio=false]{image54}
 
 \noindent 图 4-14 风险偏好灵敏度分析
 
 由图 4-14可知，（1）随着风险厌恶系数由0增加至10，系统潜在违约风险（CVaR）由44842骤降至0.71，分布式可控资源调度量从117.37MWh降低至116.44MWh而作为安全代价的火电调度量则由57.27MWh增至58.2MWh，表明策略通过支付额外的确定性成本（切负荷/火电）有效规避了尾部极端风险；（2）风险中性策略（$\beta =0$）倾向于大量调用低成本但具有高不确定性的分布式资源聚合体，而风险规避策略（$\beta =10$）通过引入CVaR惩罚项，迫使调度系统收缩分布式资源的有效可行域，转而调用物理特性确定的备用资源填补功率缺口，从而实现了以经济性换安全性的灵活博弈，显著提升了系统应对用户行为不确定性的鲁棒性。
 
 \begin{tabular}{|p{2.1in}|p{2.2in}|} \hline 
-\includegraphics*[width=3.12in, height=2.08in, keepaspectratio=false]{image114} & \includegraphics*[width=3.19in, height=2.12in, keepaspectratio=false]{image115} \\ \hline 
+\includegraphics*[width=3.12in, height=2.08in, keepaspectratio=false]{image55} & \includegraphics*[width=3.19in, height=2.12in, keepaspectratio=false]{image56} \\ \hline 
 图 4-15 SDCI变化 & 图 4-16 Rho变化 \\ \hline 
 \end{tabular}
 
@@ -1905,7 +1901,7 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 当$\beta $=50时，考虑AC和EV调节能力互补性与相关性前后的随机调度结果如图 4-17、图 4-18所示。
 
 \begin{tabular}{|p{2.3in}|p{2.0in}|} \hline 
-\includegraphics*[width=3.18in, height=2.54in, keepaspectratio=false]{image116} & \includegraphics*[width=2.62in, height=2.62in, keepaspectratio=false]{image117} \\ \hline 
+\includegraphics*[width=3.18in, height=2.54in, keepaspectratio=false]{image57} & \includegraphics*[width=2.62in, height=2.62in, keepaspectratio=false]{image58} \\ \hline 
 图 4-17 考虑协同前后调节能力指标对比 & 图 4-18 考虑协同前后调度风险对比 \\ \hline 
 \end{tabular}
 
@@ -1916,7 +1912,7 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 在最极端场景下，对调度方案进行鲁棒性测试，结果如图 4-19所示。
 
-\noindent \includegraphics*[width=3.86in, height=3.08in, keepaspectratio=false]{image118}
+\noindent \includegraphics*[width=3.86in, height=3.08in, keepaspectratio=false]{image59}
 
 \noindent 图 4-19 极端场景鲁棒性测试
 
@@ -1931,7 +1927,7 @@ EV运行成本系数 & 元/MWh & 一次项: $\mu _{c1} =500,\sigma _{c1} =50$ \\ \hline
 
 当$\beta $=10时，在不同置信水平下，对调度方案进行经济性测试，结果如图 4-20所示。
 
-\noindent \includegraphics*[width=4.81in, height=3.09in, keepaspectratio=false]{image119}
+\noindent \includegraphics*[width=4.81in, height=3.09in, keepaspectratio=false]{image60}
 
 \noindent 图 4-20 不同置信水平经济性对比
 
