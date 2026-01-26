@@ -88,7 +88,7 @@ EN.InstantFormat$\mathrm{<}$ENInstantFormat$\mathrm{>}$$\mathrm{<}$Enabled$\math
 
 
 
-第 3 章 分布式可控资源可靠调节域量化与协同特性评估
+第 2 章 计及用户行为不确定性的分布式可控资源聚合建模
 \[2\] 
 
 
@@ -321,7 +321,7 @@ S_{i,\min } \le S_{i} \left(t\right)\le S_{i,\max }
 S_{i} (t+1)=S_{i} (t)+\frac{\eta _{i} \Delta t}{C_{i} r_{i} \% } (P_{avr,i} -P_{i} (t)) 
 \end{equation} 
 
-基于\textit{t-E}平面可以直观描述电动汽车状态转移过程。图 2-1展示了电动汽车的状态转移过程，曲线①$\mathrm{\sim}$④围成的区域为单台电动汽车的运行可行域，其中，曲线④为剩余充电时间约束，表示当电动汽车的剩余充电时间刚好满足充电至目标电量时，EV强制进入充电状态，此时电动汽车不能参与电网互动，即不存在调节潜力。轨迹I$\mathrm{\sim}$IV分别对应了充电-静置、充电-静置循环、静置-充电-静置、静置-充电的四种可能充电方式，具体充电方案由电动汽车聚合商根据电网调控指令决定。
+基于\textit{t-E}平面可以直观描述电动汽车状态转移过程。图 2-1展示了电动汽车的状态转移过程，曲线①$\mathrm{\sim}$④围成的区域为单台电动汽车的运行可行域，其中，曲线④为剩余充电时间约束，表示当电动汽车的剩余充电时间刚好满足充电至目标电量时，EV强制进入充电状态，此时电动汽车不能参与电网互动，即不存在调节潜力。轨迹I$\mathrm{\sim}$IV分别对应了充电-静置、充电-静置循环、静置-充电-静置、静置-充电的四种可能充电方式，轨迹VI对应理想能量轨迹，也即以$P_{avr} $进行充电时的电量轨迹，具体充电方案由电动汽车聚合商根据电网调控指令决定。
 
 \noindent 
 
@@ -333,7 +333,7 @@ S_{i} (t+1)=S_{i} (t)+\frac{\eta _{i} \Delta t}{C_{i} r_{i} \% } (P_{avr,i} -P_{
 \begin{equation} \label{ZEqnNum332488} 
 P_{base,i} (t)=\left\{\begin{array}{lll} {P_{N,i} ,} & {E_{i} (t)\le E_{i}^{ideal} (t)-\delta _{i} } & {} \\ {0,} & {E_{i} (t)\ge E_{i}^{ideal} (t)+\delta _{i} } & {} \\ {P_{base,i} (t-\Delta t),} & {{\rm otherwise}} & {} \end{array}\right.  
 \end{equation} 
-式中，$\delta _{i} $为基线电量偏差度，$\delta _{i} =0.1\cdot C_{i} r_{i} \% $。
+式中，$\delta _{i} $为基线电量偏差值，$\delta _{i} =0.1\cdot C_{i} r_{i} \% $。在该定义下，基线电量将围绕轨迹VI作微小的上下波动，符合用户在无控制下的充电行为。
 
 
 \subsection{ 基于行为经济学的用户响应不确定性建模}
