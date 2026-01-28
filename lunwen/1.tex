@@ -88,7 +88,7 @@ EN.InstantFormat$\mathrm{<}$ENInstantFormat$\mathrm{>}$$\mathrm{<}$Enabled$\math
 
 
 
-第 2 章 计及用户行为不确定性的分布式可控资源聚合建模
+第 4 章 考虑用户不确定性与资源协同的风险规避随机调度策略
 \[2\] 
 
 
@@ -244,7 +244,7 @@ With the rollout of China's ?dual-carbon? targets and the accelerated developmen
 
 空调能够通过自动调节能耗来维持室内温度，并通过周期性的启停响应环境温度变化。在电网负荷高峰期，空调可以通过负荷移位或暂时降低能耗来帮助削峰填谷。不同类型的温控负荷对电网的响应能力各不相同，其中空调的负荷调节能力较强，能够显著改善电网的负荷波动，而冰箱、热水器等设备的能耗较低，对电网的影响较小。因此，在进行资源聚合时，需要根据不同空调的物理特性进行相应的整合。空调的地理分布和用户需求模式也会对其调节效果产生重要影响。空调的使用与季节性需求高度相关，在炎热气候地区，夏季空调的高负荷需求较为显著，而在气候较为凉爽的地区，空调的负荷需求则相对较低。由于这种区域性的差异，资源聚合时必须根据各地的特性进行优化调度，以达到更好的调节效果。
 
-空调为典型的温控负荷，其主要功能为维持空间内温度的稳定，故以空间温度为空调单体模型的状态变量，采用一阶温控方程描述空间温度变化规律，则其热力学状态方程如下所示[27]：
+空调为典型的温控负荷，其主要功能为维持空间内温度的稳定，故以空间温度为空调单体模型的状态变量，采用一阶温控方程描述空间温度变化规律，则其热力学状态方程如下所示[27,59]：
 \begin{equation} \label{1)} 
 C_{j} \dot{T}_{j} \left(t\right)={\left(T_{ja} \left(t\right)-T_{j} \left(t\right)\right)\mathord{\left/ {\vphantom {\left(T_{ja} \left(t\right)-T_{j} \left(t\right)\right) R_{j} -\eta _{j} P_{j} (t)}} \right. \kern-\nulldelimiterspace} R_{j} -\eta _{j} P_{j} (t)}  
 \end{equation} 
@@ -261,7 +261,7 @@ T_{j\min } \le T_{j} (t)\le T_{j\max }
 P_{jbaseline} \left(t\right)=\frac{T_{ja} \left(t\right)-T_{jset} }{R_{j} \eta _{j} }  
 \end{equation} 
 
-空调制冷空间具有一定的储热能力，即当其制冷功率发生变化时，室内温度不会急剧变化，仍能在一定时间内处于用户设定的舒适温度区间。然而，不同空调单体设定的舒适温度区间可能存在差异，直接以室温作为状态变量难以在多台空调间进行协同。且这种室内温度和制冷功率关联关系，类似于传统储能系统的能量和功率关系。因此，空调可以被构建为一个虚拟储能系统，并根据传统储能系统的模型，空调SOC可以定义为[59]：
+空调制冷空间具有一定的储热能力，即当其制冷功率发生变化时，室内温度不会急剧变化，仍能在一定时间内处于用户设定的舒适温度区间。然而，不同空调单体设定的舒适温度区间可能存在差异，直接以室温作为状态变量难以在多台空调间进行协同。且这种室内温度和制冷功率关联关系，类似于传统储能系统的能量和功率关系。因此，空调可以被构建为一个虚拟储能系统，并根据传统储能系统的模型，空调SOC可以定义为[59,60]：
 \begin{equation} \label{ZEqnNum481959} 
 Soc_{j} \left(t\right)=\frac{T_{j\max } -T_{j} \left(t\right)}{T_{j\max } -T_{j\min } }  
 \end{equation} 
@@ -288,7 +288,7 @@ P_{j\min } -P_{jbaseline} \left(t\right)\le \Delta P_{j} \left(t\right)\le P_{j\
 
 \paragraph{ 电动汽车电池与出行链模型构建}
 
-电动汽车兼具分布式储能物理特性，同时，其运行工况受电池状态及用户行为双重制约。用户行为决定了车辆离网或并网状态，电池状态决定了充电的具体流程。构建电动汽车模型需涵盖电池动态变化过程，并考虑用户行为对入网离网的影响。参考现阶段电动汽车参与电网互动现状[60]，本文假设电动汽车仅支持两种运行模式：固定功率充电和闲置（也即不充电）。在充电过程中，实际电池充电遵循先恒流模式后恒压模式机制，此处假定充放电功率全程恒定。据此假设条件，推导得出的电动汽车电池容量动态过程如下：
+电动汽车兼具分布式储能物理特性，同时，其运行工况受电池状态及用户行为双重制约。用户行为决定了车辆离网或并网状态，电池状态决定了充电的具体流程。构建电动汽车模型需涵盖电池动态变化过程，并考虑用户行为对入网离网的影响。参考现阶段电动汽车参与电网互动现状[61]，本文假设电动汽车仅支持两种运行模式：固定功率充电和闲置（也即不充电）。在充电过程中，实际电池充电遵循先恒流模式后恒压模式机制，此处假定充放电功率全程恒定。据此假设条件，推导得出的电动汽车电池容量动态过程如下：
 \begin{equation} \label{ZEqnNum421745} 
 E_{i} (t+1)=E_{i} (t)+\eta _{i} P_{i} (t)\Delta t 
 \end{equation} 
@@ -304,7 +304,7 @@ P_{{\rm av}r,i} =\frac{E_{{\rm tar},i} -E_{{\rm in},i} }{\eta _{i}^{} \left(t_{{
 E_{i}^{ideal} (t+1)=E_{i,k}^{ideal} (t)+\eta _{i} P_{avr,i} \Delta t 
 \end{equation} 
 
-电动汽车的实际电池容量可以通过与$E_{}^{ideal} $的差异化来实现灵活性。在此，区别于电池的SOC定义，定义电动汽车的电量偏差度为[61]：
+电动汽车的实际电池容量可以通过与$E_{}^{ideal} $的差异化来实现灵活性。在此，区别于电池的SOC定义，定义电动汽车的电量偏差度为[62]：
 \begin{equation} \label{ZEqnNum228036} 
 S_{i} \left(t\right)=\frac{E_{i}^{ideal} \left(t\right)-E_{i} \left(t\right)}{C_{i} \times r_{i} \% }  
 \end{equation} 
@@ -340,7 +340,7 @@ P_{base,i} (t)=\left\{\begin{array}{lll} {P_{N,i} ,} & {E_{i} (t)\le E_{i}^{idea
 
 前一节基于热力学与电池电化学机理构建了空调与电动汽车的物理单体模型，确立了分布式资源参与电网调节的物理能力边界。然而，在实际的需求响应场景中，物理上的可调能力并不等同于实际的响应容量。作为终端用能主体，用户对空调设定温度的调整或电动汽车充电计划的变更，本质上是一种基于主观价值判断的决策过程。传统的电力调度建模往往假设用户为完全理性的经济人，认为只要经济补偿能够覆盖用电成本，用户便会通过线性规律参与响应。
 
-然而，行为经济学研究表明，用户在面对不确定性决策时往往表现出有限理性特征，对收益与损失的心理感知存在显著的非对称性[62--66]。空调用户在面对温度偏离带来的舒适度损失时，其敏感程度远高于获得同等激励电价收益时的满足感；电动汽车用户对于电量未充满引发的里程焦虑，往往比获得激励电价具有更强的心理主导作用。这种物理环境刺激映射到生理舒适度变化，再转化为心理感知价值的过程，构成了用户响应决策的内在链条。
+然而，行为经济学研究表明，用户在面对不确定性决策时往往表现出有限理性特征，对收益与损失的心理感知存在显著的非对称性[63--67]。空调用户在面对温度偏离带来的舒适度损失时，其敏感程度远高于获得同等激励电价收益时的满足感；电动汽车用户对于电量未充满引发的里程焦虑，往往比获得激励电价具有更强的心理主导作用。这种物理环境刺激映射到生理舒适度变化，再转化为心理感知价值的过程，构成了用户响应决策的内在链条。
 
 因此，若仅依靠物理状态方程进行聚合建模，将导致对聚合体实际调节能力的严重高估。鉴于此，本节引入行为经济学中的前景理论与损失规避原理，建立物理状态与用户心理感知的映射关系。通过量化用户对空调温度偏差的忍耐阈值以及电动汽车用户对出行电量的心理预期，构建计及非理性心理特征的响应不确定性模型，从而还原分布式资源在激励信号下的响应概率与行为偏差。
 
@@ -368,7 +368,7 @@ P_{base,i} (t)=\left\{\begin{array}{lll} {P_{N,i} ,} & {E_{i} (t)\le E_{i}^{idea
 
 虚拟电厂或负荷聚合商通过一定程度的激励手段可鼓励空调用户自发地调整空调设置温度、电动汽车用户自发削减或增加充电电量以达到降低系统负荷峰值，保障电力系统安全经济运行。为直观地表达用户空调负荷、电动汽车的削减情况，本文用设定温度调整量与电动汽车期望充电电量调整量来表示用户在某一激励水平下的响应情况，在后文中统一用$\Delta {\mathbb Z}$表示，命名为灵活性变化。
 
-用户的用电是一种消费行为，由消费者心理学原理可知，激励水平是影响用户响应的主要因素之一，传统的消费者心理学模型认为，单位时间内用户在固定激励水平下的响应程度是确定的，即用户在固定的激励下对空调设定温度的调整量与电动汽车的期望充电电量是确定的。但在实际情况中，用户的响应行为存在一定的不确定性，用户的响应偏差区间随着激励电价及灵活性变化的增大而增大。此外，用户在面对收益与损失时表现出不同的态度。具体而言，当用户遭遇损失时，往往表现出较强的风险寻求倾向，而在获得收益时则表现出明显的风险规避倾向。在面对相等的收益和损失时，用户对损失的心理敏感度显著高于对收益的敏感度[67]。为此，本文建立了考虑响应偏差的分布式可控资源需求响应模型。根据用户灵活性变化量以及激励水平的变化关系，将空调与电动汽车负荷的响应行为划分为不敏感区间（响应死区），正常响应区间（线性区）以及绝对响应区间（饱和区）。考虑用户响应偏差的分布式可控资源响应曲线如图 2-3所示。
+用户的用电是一种消费行为，由消费者心理学原理可知，激励水平是影响用户响应的主要因素之一，传统的消费者心理学模型认为，单位时间内用户在固定激励水平下的响应程度是确定的，即用户在固定的激励下对空调设定温度的调整量与电动汽车的期望充电电量是确定的。但在实际情况中，用户的响应行为存在一定的不确定性，用户的响应偏差区间随着激励电价及灵活性变化的增大而增大。此外，用户在面对收益与损失时表现出不同的态度。具体而言，当用户遭遇损失时，往往表现出较强的风险寻求倾向，而在获得收益时则表现出明显的风险规避倾向。在面对相等的收益和损失时，用户对损失的心理敏感度显著高于对收益的敏感度[68]。为此，本文建立了考虑响应偏差的分布式可控资源需求响应模型。根据用户灵活性变化量以及激励水平的变化关系，将空调与电动汽车负荷的响应行为划分为不敏感区间（响应死区），正常响应区间（线性区）以及绝对响应区间（饱和区）。考虑用户响应偏差的分布式可控资源响应曲线如图 2-3所示。
 
 需特别说明的是，经典损失规避理论通常采用非线性S形价值函数，但将其直接应用于聚合模型会导致严重的求解困难。为此，本文出于工程实用性考虑，对价值函数进行了分段线性化处理。该模型虽形式简化，仍完整保留了理论的三大核心特征：通过响应死区体现参考点依赖，通过饱和区体现敏感度递减，通过差异化的调节阈值与斜率体现损失规避特性。
 
@@ -419,7 +419,7 @@ F_{{\rm arr}} (t)=\frac{1}{\sigma _{a} \sqrt{2\pi } } \exp \left(-\frac{(t-\mu _
 \end{equation} 
 式中，$t$代表$t$时刻；$H$代表最大时间；$\mu _{a} $和$\sigma _{a} $代表到达时刻概率分布的参数。
 
-研究通常假设电动汽车在完成一次出行并返回后，其接入电网的时刻即被视为入网时间；一旦接入系统，若以功率基线进行充电，则充电过程会立即开始。文献[68]利用2017年NHTS数据库中的私人车辆出行行为数据，对用户接入系统的时间进行了拟合研究。在无序充电模式下，用户一般集中在18点前后陆续接入系统并开始充电，其统计规律近似服从正态分布。其概率密度函数表示为\eqref{ZEqnNum585943}：
+研究通常假设电动汽车在完成一次出行并返回后，其接入电网的时刻即被视为入网时间；一旦接入系统，若以功率基线进行充电，则充电过程会立即开始。文献[69]利用2017年NHTS数据库中的私人车辆出行行为数据，对用户接入系统的时间进行了拟合研究。在无序充电模式下，用户一般集中在18点前后陆续接入系统并开始充电，其统计规律近似服从正态分布。其概率密度函数表示为\eqref{ZEqnNum585943}：
 \begin{equation} \label{ZEqnNum585943} 
 f_{in} (t_{in} )=\left\{\begin{array}{ll} {\frac{1}{\sqrt{2\pi \sigma _{in} } } \exp (-\frac{(t_{in} +24-\mu _{in} )^{2} }{2\sigma _{in}^{2} } ),} & {0<t_{in} \le \mu _{in} -12} \\ {\frac{1}{\sqrt{2\pi \sigma _{in} } } \exp (-\frac{(t_{in} -\mu _{in} )^{2} }{2\sigma _{in}^{2} } ),} & {\mu _{in} -12<t_{in} \le 24} \end{array}\right.  
 \end{equation} 
@@ -442,7 +442,7 @@ E_{in} =C_{{\rm EV}} -dH_{km}
 \end{equation} 
 式中，$C_{{\rm EV}} $代表电动汽车电池的额定容量；$H_{km} $代表每公里行驶的耗电量；$E_{in} $代表电动汽车的入网电量。
 
-参与有序充电用户可能出现的失约情景为[69]：用户晚于约定时间到达充电站，或提前离网。由于电动汽车入网和离网时间呈现正态分布，因此本文可以基于正态分布首先生成电动汽车集群的入网和离网时间的原始数据集，随后对用户失约程度进行建模。首先，基于正态分布生成T天内N名用户的入离网时间，分别作为EV原始数据集；随后，定义$\Delta t_{in} $、$\Delta t_{dep} $为用户失约变量，分别代表电动汽车入离网的时间偏差；最后，构建失约变量模糊集。基于T天数据，计算N名用户中每个用户的平均入网时间和平均离网时间，作为约定时间点；利用\eqref{ZEqnNum492589}和\eqref{ZEqnNum750917}计算每个用户在T天中每天的入网时间与约定入网时间的偏差、离网时间与约定离网时间的偏差，构成失约变量不确定模糊集。
+参与有序充电用户可能出现的失约情景为[70]：用户晚于约定时间到达充电站，或提前离网。由于电动汽车入网和离网时间呈现正态分布，因此本文可以基于正态分布首先生成电动汽车集群的入网和离网时间的原始数据集，随后对用户失约程度进行建模。首先，基于正态分布生成T天内N名用户的入离网时间，分别作为EV原始数据集；随后，定义$\Delta t_{in} $、$\Delta t_{dep} $为用户失约变量，分别代表电动汽车入离网的时间偏差；最后，构建失约变量模糊集。基于T天数据，计算N名用户中每个用户的平均入网时间和平均离网时间，作为约定时间点；利用\eqref{ZEqnNum492589}和\eqref{ZEqnNum750917}计算每个用户在T天中每天的入网时间与约定入网时间的偏差、离网时间与约定离网时间的偏差，构成失约变量不确定模糊集。
 \begin{equation} \label{ZEqnNum492589} 
 \left\{\begin{array}{ll} {(\zeta _{in,n} )^{-} =\min (\bar{T}_{in,n} -T_{in,n} ,0),} & {n=1,2,3,\ldots ,N} \\ {\Omega _{\zeta _{in} } =\{ \zeta _{in,1} ,\zeta _{in,2} ,\zeta _{in,3} ,\ldots ,\zeta _{in,N} \} } & {} \end{array}\right.  
 \end{equation} 
@@ -459,7 +459,7 @@ E_{in} =C_{{\rm EV}} -dH_{km}
 
 采用对空调个体SOC归一化的方法进行聚合，使区域内不同类型空调设备之间存在可比性。
 
-进一步假定以各空调单体各时刻SOC相同为目标进行群调调整功率指令分解算法，则有：
+进一步假定以各空调单体各时刻SOC相同为目标进行群调调整功率指令分解算法，则有[59]：
 \begin{equation} \label{29)} 
 \begin{array}{l} {\alpha _{1} Soc\left(k\right)+\beta _{1} \Delta P_{1} \left(k\right){\rm +}\gamma _{1} =\alpha _{2} Soc\left(k\right)+\beta _{2} \Delta P_{2} \left(k\right){\rm +}\gamma _{2} =....=\alpha _{n} Soc\left(k\right)+\beta _{n} \Delta P_{n} \left(k\right){\rm +}\gamma _{n} } \\ {\Delta P_{S} =\sum _{j=1}^{n}\Delta P_{j} \left(k\right) } \end{array} 
 \end{equation} 
@@ -480,7 +480,7 @@ E_{in} =C_{{\rm EV}} -dH_{km}
 Soc\left(k+1\right)=\frac{\sum _{j=1}^{n}\frac{\alpha _{j} }{\beta _{j} }  }{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } Soc\left(k\right)+\frac{1}{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } \Delta P_{Si} \left(t\right)+\frac{1}{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } \sum _{j=1}^{n}\frac{\gamma _{j} }{\beta _{j} }   
 \end{equation} 
 
-综上所述，空调聚合模型为：
+综上所述，空调聚合模型为[59]：
 \begin{equation} \label{ZEqnNum735044} 
 \begin{array}{l} {Soc\left(t+1\right)=ASoc\left(t\right)+B\Delta P\left(t\right)+C} \\ {P_{S\min } \le \Delta P_{S} \left(t\right)+P_{Sbaseline} \le P_{S\max } } \\ {0\le Soc\left(t\right)\le 1} \\ {A=\frac{\sum _{j=1}^{n}\frac{\alpha _{j} }{\beta _{j} }  }{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } ,B=\frac{1}{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } ,C=\frac{1}{\sum _{j=1}^{n}\frac{1}{\beta _{j} }  } \sum _{j=1}^{n}\frac{\gamma _{j} }{\beta _{j} }  } \\ {P_{S\min } =\sum _{j=1}^{n}P_{j\min }  ,P_{S\max } =\sum _{j=1}^{n}P_{j\max } , P_{Sbaseline} =\sum _{j=1}^{n}P_{jbaseline}  } \end{array} 
 \end{equation} 
@@ -523,7 +523,7 @@ S_{i} (t)=\frac{E_{i}^{{\rm exp}} (t)-E_{i} (t)}{C_{i} \times r_{i} \% } \bullet
 \alpha _{1} +\alpha _{2} =1 
 \end{equation} 
 
-电动汽车工作在离散状态，也即在线与离网状态。因此，可以构造电动汽车单体响应特性曲线如图 2-4所示。其中，$P_{char} $为电动汽车入网时的运行功率，$S'$为电量偏差度的标幺值，其计算公式为[61]：
+电动汽车工作在离散状态，也即在线与离网状态。因此，可以构造电动汽车单体响应特性曲线如图 2-4所示。其中，$P_{char} $为电动汽车入网时的运行功率，$S'$为电量偏差度的标幺值，其计算公式为[62]：
 \begin{equation} \label{39)} 
 S'_{i} =\left\{\begin{array}{ll} {\frac{S_{i} +1}{2} \in [0,1],} & {5¨\} f/} \\ {\frac{S_{i} -1}{2} \in [-1,0],} & {5¨\} fsí} \end{array}\right.  
 \end{equation} 
@@ -604,7 +604,7 @@ $\mathrm{{\mathbb I}}_{i} $的值会直接影响聚合模型中的聚合参数�
 
 \paragraph{ 仿真场景与参数设置}
 
-本算例选取1000台变频空调和1000台电动汽车作为聚合资源对象。其中，空调的热力学参数及用户温度设定值均由均匀分布随机生成，并设定了典型夏季环境温度作为背景。电动汽车参数基于五种市面主流真实车型数据设定，涵盖不同的电池容量与充电功率配置。车辆的出行与停泊行为充分考虑了居民区与工作区的功能差异，其停车时长与入网时刻服从概率分布。此外，根据中国虚拟电厂相关政策[70--73]，调研得到聚合商给空调的激励上限为0.4元/kWh，电动汽车的激励上限为0.6元/kWh（参与有序充电），由此设置了不同梯度的激励电价扫描参数，具体仿真参数如下表以及下文所示。
+本算例选取1000台变频空调和1000台电动汽车作为聚合资源对象。其中，空调的热力学参数及用户温度设定值均由均匀分布随机生成，并设定了典型夏季环境温度作为背景。电动汽车参数基于五种市面主流真实车型数据设定，涵盖不同的电池容量与充电功率配置。车辆的出行与停泊行为充分考虑了居民区与工作区的功能差异，其停车时长与入网时刻服从概率分布。此外，根据中国虚拟电厂相关政策[71--74]，调研得到聚合商给空调的激励上限为0.4元/kWh，电动汽车的激励上限为0.6元/kWh（参与有序充电），由此设置了不同梯度的激励电价扫描参数，具体仿真参数如下表以及下文所示。
 
 \noindent 表 2-1 空调与电动汽车参数设置
 
@@ -640,7 +640,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 注：U($\mathrm{\bullet}$)表示均匀分布，N($\mathrm{\bullet}$)表示正态分布。环境温度为某市夏季典型日温度。
 
-取当前具有代表性的五类电动汽车，根据资料[74--82]以及居住区电动汽车充电设施建设规范[83]，可以整理当前中国典型的电动汽车充电画像如表 2-2所示。
+取当前具有代表性的五类电动汽车，根据资料[75--83]以及居住区电动汽车充电设施建设规范[84]，可以整理当前中国典型的电动汽车充电画像如表 2-2所示。
 
 \noindent 表 2-2 车型数据
 
@@ -655,7 +655,7 @@ EV & 数量（台） & 1000 \\ \hline
 比亚迪元PLUS & BEV & 50.12 / 60.48 & 7 & 约90 \\ \hline 
 \end{tabular}
 
-此外，分功能区电动汽车停车时长分布设置。受生产生活影响，车辆在不同功能区的停车时长有所差异[84,85]。基于以往研究和对用户生活特性的调研[86,87]，发现电动汽车用户在居民区的停车时长多集中在8$\mathrm{\sim}$12小时，并且在晚上的停车时长显著高于白天；而在工作区用户的停车时长多集中在4$\mathrm{\sim}$8小时，且在白天的停车时长显著高于夜间，因此，本文对居民区和工作区的停车时长进行分小时设计，其分时分布如表 2-3所示。
+此外，分功能区电动汽车停车时长分布设置。受生产生活影响，车辆在不同功能区的停车时长有所差异[85,86]。基于以往研究和对用户生活特性的调研[87,88]，发现电动汽车用户在居民区的停车时长多集中在8$\mathrm{\sim}$12小时，并且在晚上的停车时长显著高于白天；而在工作区用户的停车时长多集中在4$\mathrm{\sim}$8小时，且在白天的停车时长显著高于夜间，因此，本文对居民区和工作区的停车时长进行分小时设计，其分时分布如表 2-3所示。
 
 \noindent 表 2-3 停车时长分布
 
@@ -890,7 +890,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 分布式可控资源的调节能力直接限制了这类资源参与电网运行与控制的范围。此外，不同的运行和控制场景，对调节能力的要求也存在差异。准确评估分布式可控资源响应指令的能力是其实现电网互动的前提条件。这种响应能力包含了多个核心要素，例如功率可调量、持续时间以及对指令的响应时间。其中，前两个要素结合起来，共同构成了该资源的功率调节能力。
 
-因此，在此定义分布式可控资源调节能力为：设备或系统在规定时间内做出响应，且能够连续保持给定时长的最大功率改变量[88]。其有三个要素：对指令完全响应的时间、最大功率改变量、维持该最大功率改变量的持续时间。若设备或系统因通信延迟或其本体物理属性的限制，无法在规定时限内实现完全响应，则该资源不适宜参与短时间尺度的电网调节，例如调频场景。然而，这类资源仍可以参与对指令响应时效性要求不高的场景，如调峰等。此外，为了和火电等能源做出区分，在此定义分布式可控资源上调节能力为能够增加用电的能力，下调节能力反之。
+因此，在此定义分布式可控资源调节能力为：设备或系统在规定时间内做出响应，且能够连续保持给定时长的最大功率改变量[89]。其有三个要素：对指令完全响应的时间、最大功率改变量、维持该最大功率改变量的持续时间。若设备或系统因通信延迟或其本体物理属性的限制，无法在规定时限内实现完全响应，则该资源不适宜参与短时间尺度的电网调节，例如调频场景。然而，这类资源仍可以参与对指令响应时效性要求不高的场景，如调峰等。此外，为了和火电等能源做出区分，在此定义分布式可控资源上调节能力为能够增加用电的能力，下调节能力反之。
 
 以单台AC和EV为例，来阐述上调节能力的分析过程及其聚合结果。由图 3-1可见：在空调的运行周期内，其可随时执行关机操作（前提是关机后未达到温度上限），因而在调节时长$T$小于关机剩余时间$T_{AC1} $时，调节能力等于AC功率，一旦超过该时间限制，调节能力会立刻降至零；对于电动汽车，充电期间可降低功率，只要确保在离开电网前达到用户要求的最低电量即可，因此，EV的调节能力起初是一个受最大放电功率约束的固定值，随后随着调节时长的增加而逐渐递减。这两种分布式可控资源的聚合调节能力曲线是它们的调节能力曲线的简单叠加，同样表现出随调节时长增加而减小的趋势。当分布式可控资源的数量增加时，聚合调节能力曲线将变得更为平滑。
 
@@ -919,7 +919,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 1.电动汽车充电时变特性分析指标选择
 
-充电时间特性分析指标是指能够反映电动汽车用户充电行为时空信息的指标，包括充电方式、充电电量、充电费用、起始充电时刻、充电时长、交易结束原因、车辆剩余电量、充电区域位置等因素[89--91]。电动汽车用户充电时间特征分析有助于明确车辆的出行和充电规律，是充电资源配置和车网源协同优化的基础。结合以往研究，本节对电动汽车充电时间特性分析指标进行选择。   
+充电时间特性分析指标是指能够反映电动汽车用户充电行为时空信息的指标，包括充电方式、充电电量、充电费用、起始充电时刻、充电时长、交易结束原因、车辆剩余电量、充电区域位置等因素[90--92]。电动汽车用户充电时间特征分析有助于明确车辆的出行和充电规律，是充电资源配置和车网源协同优化的基础。结合以往研究，本节对电动汽车充电时间特性分析指标进行选择。   
 
 （1）充电起止时间
 
@@ -939,7 +939,7 @@ EV & 数量（台） & 1000 \\ \hline
 
 （5）充电位置
 
-充电位置是指电动汽车用户充电的地点，是反映电动汽车充电空间特性的重要因素。在以往的研究中充电位置通常被划分为商业区、居民区、办公区等多个类别[92,93]。
+充电位置是指电动汽车用户充电的地点，是反映电动汽车充电空间特性的重要因素。在以往的研究中充电位置通常被划分为商业区、居民区、办公区等多个类别[93,94]。
 
 （6）车辆电池容量
 
@@ -994,24 +994,20 @@ EV & 数量（台） & 1000 \\ \hline
 
 \paragraph{ 空调聚合体调节能力评估方法}
 
-空调调节能力的一般化定义为：在规定时间内（由高级应用场景决定）做出响应，且能够连续保持给定时长的最大功率改变量。其有三个要素：对指令完全响应的时间、最大功率改变量、维持该最大功率改变量的持续时间。
+掌握空调运行状态与调节边界后，本文利用所得到的状态转移方程进一步确定不同时间尺度下的空调调节能力，不同于电动汽车，空调的上下调节潜力定义具有相似性，因此在下文中在一起进行叙述。
 
-掌握空调运行状态与调节边界后，本文利用所得到的状态转移方程进一步确定不同时间尺度下的空调调节潜力，不同于电动汽车，空调的上下调节潜力定义具有相似性，因此在下文中在一起进行叙述。
-
-1）功率调节约束。上调节应满足：
+空调在运行时，应当满足空调本身的功率调节约束。上调节应满足：
 \begin{equation} \label{ZEqnNum684857} 
-\Delta P_{P}^{+} \left(t\right)=P_{\max } -P_{{\rm base}} \left(t\right) 
+\Delta P_{P,AC}^{+} \left(t\right)=P_{\max }^{AC} -P_{base}^{AC} \left(t\right) 
 \end{equation} 
 
 下调节应满足：
 \begin{equation} \label{ZEqnNum231034} 
-\Delta P_{P}^{-} \left(t\right)=P_{\min } -P_{{\rm base}} \left(t\right) 
+\Delta P_{P,AC}^{-} \left(t\right)=P_{\min }^{AC} -P_{base}^{AC} \left(t\right) 
 \end{equation} 
-式中，$\Delta P_{P}^{+} \left(t\right)$为空调功率约束上调能力，$\Delta P_{P}^{-} \left(t\right)$为空调功率约束下调能力，$P_{\max } $、$P_{\min } $分别为空调功率的最大值与最小值，$P_{{\rm base}} \left(t\right)$为空调的功率基线。
+式中，$\Delta P_{P,AC}^{+} \left(t\right)$为空调功率约束上调能力，$\Delta P_{P,AC}^{-} \left(t\right)$为空调功率约束下调能力，$P_{\max }^{AC} $、$P_{\min }^{AC} $分别为空调功率的最大值与最小值，$P_{base}^{AC} \left(t\right)$为空调的功率基线。
 
-2）能量调节约束
-
-空调在功率调节的过程中，由于室温具有热惯性，所以在短时间尺度下可调整功率可以短暂的超过空调稳态运行时的功率调节量，调节过程保证空调的SOC满足约束，即$0\le Soc\le 1$。
+此外，空调在功率调节的过程中，由于室温具有热惯性，所以在短时间尺度下可调整功率可以短暂的超过空调稳态运行时的功率调节量，调节过程保证空调的SOC满足约束，即$0\le Soc\le 1$。
 
 在空调运行时，由式\eqref{ZEqnNum775885}可知，在给定调节时长$\Delta t_{{\rm adj}} $下空调的状态转移过程满足：
 \begin{equation} \label{ZEqnNum461796} 
@@ -1025,52 +1021,52 @@ $\alpha $、$\beta $、$\gamma $的定义如\eqref{ZEqnNum332781}所示：
 
 由于已知空调的能量边界，在给定调节时长下，可以计算出空调的功率调节能力。由式\eqref{ZEqnNum461796}可得，当$Soc=1$时，空调的能力上调节能力计算为：
 \begin{equation} \label{ZEqnNum281096} 
-\Delta P_{{\rm E}}^{+} \left(t\right)=\frac{1-\left(1-\alpha \Delta t_{{\rm adj}} \right)Soc\left(t\right)-\gamma \Delta t_{{\rm adj}} }{\beta \Delta t_{{\rm adj}} }  
+\Delta P_{E,AC}^{+} \left(t\right)=\frac{1-\left(1-\alpha \Delta t_{{\rm adj}} \right)Soc\left(t\right)-\gamma \Delta t_{{\rm adj}} }{\beta \Delta t_{{\rm adj}} }  
 \end{equation} 
 
 当$Soc=0$时，计算空调下调节能力为：
 \begin{equation} \label{8)} 
-\Delta P_{{\rm E}}^{-} \left(t\right)=\frac{-\left(1-\alpha \Delta t_{{\rm adj}} \right)Soc\left(t\right)-\gamma \Delta t_{{\rm adj}} }{\beta \Delta t_{{\rm adj}} }  
+\Delta P_{E,AC}^{-} \left(t\right)=\frac{-\left(1-\alpha \Delta t_{{\rm adj}} \right)Soc\left(t\right)-\gamma \Delta t_{{\rm adj}} }{\beta \Delta t_{{\rm adj}} }  
 \end{equation} 
-式中，$\Delta P_{{\rm E}}^{+} \left(t\right)$、$\Delta P_{{\rm E}}^{-} \left(t\right)$分别表示$t$时刻空调在能量约束下的功率调节能力上、下限。
+式中，$\Delta P_{E,AC}^{+} \left(t\right)$、$\Delta P_{E,AC}^{-} \left(t\right)$分别表示$t$时刻空调在能量约束下的功率调节能力上、下限。
 
 由调节能力定义可知，调节能力上限应为非负值，下限应为非正值。因此，对功率调节能力上、下限进行修正：
 
 上限修正为：
 \begin{equation} \label{ZEqnNum341418} 
-\Delta P_{{\rm E,r}}^{+} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{{\rm E}}^{+} \left(t\right)<0} \\ {\Delta P_{{\rm E}}^{+} \left(t\right),\Delta P_{{\rm E}}^{+} \left(t\right)\ge 0} \end{array}\right.  
+\Delta P_{E,AC}^{+} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{E,AC}^{+} \left(t\right)<0} \\ {\Delta P_{E,AC}^{+} \left(t\right),\Delta P_{E,AC}^{+} \left(t\right)\ge 0} \end{array}\right.  
 \end{equation} 
 
 下限修正为：
 \begin{equation} \label{ZEqnNum288979} 
-\Delta P_{{\rm E,r}}^{-} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{{\rm E}}^{-} \left(t\right)>0} \\ {\Delta P_{{\rm E}}^{-} \left(t\right),\Delta P_{{\rm E}}^{-} \left(t\right)\le 0} \end{array}\right.  
+\Delta P_{E,AC}^{-} \left(t\right)=\left\{\begin{array}{l} {0,\Delta P_{E,AC}^{-} \left(t\right)>0} \\ {\Delta P_{E,AC}^{-} \left(t\right),\Delta P_{E,AC}^{-} \left(t\right)\le 0} \end{array}\right.  
 \end{equation} 
 
 功率调节能力需同时满足瞬时功率限制与能量动态约束，最终空调调节潜力取二者交集：
 
 空调上调节潜力为：
 \begin{equation} \label{11)} 
-\Delta P^{+} \left(t\right)=\min \left\{\Delta P_{{\rm P}}^{{\rm +}} \left(t\right),\Delta P_{{\rm E,r}}^{{\rm +}} \left(t\right)\right\} 
+\Delta P_{AC}^{+} \left(t\right)=\min (P_{P,AC}^{{\rm +}} \left(t\right),\Delta P_{E,AC}^{{\rm +}} \left(t\right)) 
 \end{equation} 
 
 空调下调节潜力为：
 \begin{equation} \label{ZEqnNum951414} 
-\Delta P_{}^{-} \left(t\right)=\max \left\{\Delta P_{{\rm P}}^{-} \left(t\right),\Delta P_{{\rm E,r}}^{-} \left(t\right)\right\} 
+\Delta P_{AC}^{-} \left(t\right)=\max (\Delta P_{P,AC}^{-} \left(t\right),\Delta P_{E,AC}^{-} \left(t\right)) 
 \end{equation} 
-式中，$\Delta P_{}^{+} \left(t\right)$、$\Delta P_{}^{-} \left(t\right)$分别表示\textit{t}时刻空调的总功率调节能力上、下限。
+式中，$\Delta P_{AC}^{+} \left(t\right)$、$\Delta P_{AC}^{-} \left(t\right)$分别表示\textit{t}时刻空调的总功率调节能力上、下限。
 
 以上空调调节能力的计算均为针对空调单体，聚合体调节能力计算同样由以下两种方案：
 
 1）精确调节能力计算。也即认为空调聚合体的调节能力为空调单体的调节能力之和。空调聚合体上、下调节能力为：
 \begin{equation} \label{13)} 
-\left\{\begin{array}{l} {\Delta P_{{\rm agg}}^{+} \left(t\right)=\sum _{i=1}^{N_{AC} }\Delta P_{{\rm i}}^{+} \left(t\right) } \\ {\Delta P_{{\rm agg}}^{-} \left(t\right)=\sum _{i=1}^{N_{AC} }\Delta P_{{\rm i}}^{-} \left(t\right) } \end{array}\right.  
+\left\{\begin{array}{l} {\Delta P_{{\rm agg,AC}}^{+} \left(t\right)=\sum _{i=1}^{N_{AC} }\Delta P_{{\rm i,AC}}^{+} \left(t\right) } \\ {\Delta P_{{\rm agg,AC}}^{-} \left(t\right)=\sum _{i=1}^{N_{AC} }\Delta P_{{\rm i,AC}}^{-} \left(t\right) } \end{array}\right.  
 \end{equation} 
 
 2）非精确调节能力计算。使用2.4.1节构建的空调聚合体模型，对聚合体调节能力进行评估。
 
 对于功率调节约束部分，假设空调聚合体的功率的最大值、最小值与功率基线分别为单体之和：
 \begin{equation} \label{14)} 
-\left\{\begin{array}{l} {P_{{\rm agg,max}}^{} \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,max}}^{} \left(t\right) } \\ {P_{{\rm agg,min}}^{} \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,min}}^{} \left(t\right) } \\ {P_{{\rm agg,base}}^{} \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,base}}^{} \left(t\right) } \end{array}\right.  
+\left\{\begin{array}{l} {P_{{\rm agg,AC}}^{\max } \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,AC}}^{\max } \left(t\right) } \\ {P_{{\rm agg,AC}}^{\min } \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,AC}}^{\min } \left(t\right) } \\ {P_{{\rm agg,AC}}^{base} \left(t\right)=\sum _{i=1}^{N_{AC} }P_{{\rm i,AC}}^{base} \left(t\right) } \end{array}\right.  
 \end{equation} 
 
 带入式\eqref{ZEqnNum684857}、式\eqref{ZEqnNum231034}即可求出空调聚合体功率约束上、下调能力。
@@ -1085,7 +1081,7 @@ $\alpha $、$\beta $、$\gamma $的定义如\eqref{ZEqnNum332781}所示：
 \end{equation} 
 $Soc_{agg} \left(t\right)$为各空调单体的平均SOC：
 \begin{equation} \label{17)} 
-Soc_{agg} \left(t\right)=\sum _{i=1}^{N_{AC} }Soc_{i} \left(t\right)  
+Soc_{agg,AC} \left(t\right)=\sum _{i=1}^{N_{AC} }Soc_{i} \left(t\right) /N_{AC}  
 \end{equation} 
 
 计算出$\Delta P_{{\rm E,agg}}^{+} \left(t\right)$、$\Delta P_{{\rm E,agg}}^{-} \left(t\right)$后，带入式\eqref{ZEqnNum341418}-\eqref{ZEqnNum951414}后，即可计算出空调聚合体的非精确调节能力。
@@ -1101,31 +1097,31 @@ Soc_{agg} \left(t\right)=\sum _{i=1}^{N_{AC} }Soc_{i} \left(t\right)
 \end{equation} 
 式中，$t_{rem} $为剩余并网时间，表示电动汽车距离离网的时间差；$\Delta t_{adj} $为调节时长，当剩余并网时间大于调节时长时，电动汽车具备调节能力，否则不具备调节能力。
 
-2）能量、功率约束。电动汽车的实时调节能力受限于充放电设备的物理功率边界与用户舒适度定义的能量边界双重约束。本文提出一种基于电量偏差度状态空间的逆推算法，在保证调节过程结束时车辆状态始终处于用户设定的电量偏差度前提下，评估其在调节时段$\Delta t_{adj} $内所能提供的最大上调与下调功率。基于2.4.2节构建的电动汽车聚合模型，能量死区参数$r_{i} $已被定义为随激励水平动态变化的用户心理响应偏差，即满足恒等式$C_{i} \times r_{i} \% \equiv \Delta E_{set} (p)$。因此，本节在评估调节能力时，直接利用该动态边界计算电量偏差度$S_{i} (t)$在状态空间$[-1,1]$内的最大可达功率。
+2）能量、功率约束。电动汽车的实时调节能力受限于充放电设备的物理功率边界与用户舒适度定义的能量边界双重约束。本文提出一种基于电量偏差度状态方程的逆推算法，在保证调节过程结束时车辆状态始终处于用户设定的电量偏差度前提下，评估其在调节时段$\Delta t_{adj} $内所能提供的最大上调与下调功率。基于2.4.2节构建的电动汽车聚合模型，能量死区参数$r_{i} $已被定义为随激励水平动态变化的用户心理响应偏差，即满足恒等式$C_{i} \times r_{i} \% \equiv \Delta E_{set} (p)$。因此，本节在评估调节能力时，直接利用该动态边界计算电量偏差度$S_{i} (t)$在状态空间$[-1,1]$内的最大可达功率。
 
-首先，计算受充放电设备物理特性限制的功率约束调节潜力。对于第$i$辆电动汽车，其瞬时物理功率调节空间由额定最大充电功率$P_{max} $和最小功率$P_{min} $（单向充电时取0）相对于当前基线功率$P_{base} (t)$的偏差决定：
+首先，计算受充放电设备物理特性限制的功率约束调节潜力。对于电动汽车，其瞬时物理功率调节空间由额定最大充电功率$P_{\max }^{EV} $和最小功率$P_{\min }^{EV} $（单向充电时取0）相对于当前基线功率$P_{base}^{EV} (t)$的偏差决定：
 \begin{equation} \label{19)} 
-\left\{\begin{array}{l} {\Delta P_{P,i}^{+} (t)=\max (P_{max}^{i} -P_{base}^{i} (t),0)} \\ {\Delta P_{P,i}^{-} (t)=\min (P_{min}^{i} -P_{base}^{i} (t),0)} \end{array}\right.  
+\left\{\begin{array}{l} {\Delta P_{P,EV}^{+} (t)=\max (P_{max}^{EV} -P_{base}^{EV} (t),0)} \\ {\Delta P_{P,EV}^{-} (t)=\min (P_{min}^{EV} -P_{base}^{EV} (t),0)} \end{array}\right.  
 \end{equation} 
 
-其次，计算受用户电量偏差度限制的调节能力。为了将能量约束转化为功率约束，基于第2章构建的电量偏差度状态转移方程，定义状态系数$A_{i} $、$B_{i} $与$D_{i} $如下：
+其次，计算受用户电量偏差度限制的调节能力。为了将能量约束转化为功率约束，基于第2章构建的电量偏差度状态转移方程，定义状态系数$A$、$B$与$D$如下：
 \begin{equation} \label{20)} 
-\left\{\begin{array}{l} {A_{i} =-\frac{C_{EV,i} \cdot r_{i} \% }{\eta _{i} } } \\ {B_{i} =\frac{C_{EV,i} \cdot r_{i} \% }{\eta _{i} } } \\ {D_{i} =\frac{E_{tar,i} -E_{in,i} }{\eta _{i} (t_{dep,i} -t_{in,i} )} } \end{array}\right.  
+\left\{\begin{array}{l} {A=-\frac{C_{EV} \cdot r\% }{\eta _{i} } } \\ {B=\frac{C_{EV} \cdot r\% }{\eta _{i} } } \\ {D=\frac{E_{tar} -E_{in} }{\eta (t_{dep} -t_{in} )} } \end{array}\right.  
 \end{equation} 
 
-假设在调节指令执行$\Delta t_{adj} $时间后，车辆的电量偏差度$S_{i} (t+\Delta t_{adj} )$刚好触碰约束边界，以此逆推允许的平均功率。对于上调节（充电），目标是状态趋向额定充电功率上限$S=-1$；对于下调节（削减/放电），目标是趋向充电功率下限$S=1$。对应的理论限制功率计算如下：
+假设在调节指令执行$\Delta t_{adj} $时间后，车辆的电量偏差度$S(t+\Delta t_{adj} )$刚好触碰约束边界，以此逆推允许的平均功率。对于上调节（充电），目标是状态趋向额定充电功率上限$S=-1$；对于下调节（削减/放电），目标是趋向充电功率下限$S=1$。对应的理论限制功率计算如下：
 \begin{equation} \label{21)} 
-\left\{\begin{array}{l} {P_{E,i}^{+} (t)=\frac{A_{i} \cdot (-1)+B_{i} \cdot S_{i} (t)}{\Delta t_{adj} } +D_{i} } \\ {P_{E,i}^{-} (t)=\frac{A_{i} \cdot (1)+B_{i} \cdot S_{i} (t)}{\Delta t_{adj} } +D_{i} } \end{array}\right.  
+\left\{\begin{array}{l} {P_{E,EV}^{+} (t)=\frac{A\cdot (-1)+B\cdot S(t)}{\Delta t_{adj} } +D} \\ {P_{E,EV}^{-} (t)=\frac{A\cdot (1)+B\cdot S(t)}{\Delta t_{adj} } +D} \end{array}\right.  
 \end{equation} 
 
 相应的能量约束调节能力即为上述理论限制功率与当前基线功率的差值：
 \begin{equation} \label{22)} 
-\left\{\begin{array}{l} {\Delta P_{E,i}^{+} (t)=P_{E,i}^{+} (t)-P_{base}^{i} (t)} \\ {\Delta P_{E,i}^{-} (t)=P_{E,i}^{-} (t)-P_{base}^{i} (t)} \end{array}\right.  
+\left\{\begin{array}{l} {\Delta P_{E,EV}^{+} (t)=P_{E,EV}^{+} (t)-P_{base}^{EV} (t)} \\ {\Delta P_{E,EV}^{-} (t)=P_{E,EV}^{-} (t)-P_{base}^{EV} (t)} \end{array}\right.  
 \end{equation} 
 
 最后，取功率约束与能量约束的交集，得到电动汽车最终的实时调节能力。为了保证计算的鲁棒性，需对计算结果进行非负性（上调）或非正性（下调）截断，并确保不超出物理极限：
 \begin{equation} \label{ZEqnNum175109} 
-\left\{\begin{array}{l} {\Delta P_{i}^{+} (t)=\min (\Delta P_{P,i}^{+} (t),\max (0,\Delta P_{E,i}^{+} (t)))} \\ {\Delta P_{i}^{-} (t)=\max (\Delta P_{P,i}^{-} (t),\min (0,\Delta P_{E,i}^{-} (t)))} \end{array}\right.  
+\left\{\begin{array}{l} {\Delta P_{EV}^{+} (t)=\min (\Delta P_{P,EV}^{+} (t),\max (0,\Delta P_{E,EV}^{+} (t)))} \\ {\Delta P_{EV}^{-} (t)=\max (\Delta P_{P,EV}^{-} (t),\min (0,\Delta P_{E,EV}^{-} (t)))} \end{array}\right.  
 \end{equation} 
 
 以上调节能力计算方法均为电动汽车单体的计算方法。电动汽车单体聚合体的调节能力计算可以通过以下两个方案实现：
@@ -1162,9 +1158,9 @@ E_{agg,tar}^{EV} =\sum _{i=1}^{N_{EV} }E_{tar,i}^{EV}
 
 \paragraph{ 分布式可控资源聚合体可靠调节域计算}
 
-前文虽然构建了基于物理参数与用户设定的空调及电动汽车聚合体调节能力模型，但其本质属于确定性评估，仅刻画了聚合体在理想状态下的最大理论调节潜力。然而，在实际运行场景中，分布式资源的响应行为受到多源不确定性的深层耦合影响，用户侧的实时用能意愿、对激励价格的敏感度以及随机的出行需求导致单体响应具有显著的随机性。这意味着，聚合体在$t$时刻实际能够交付的调节功率并非一个确定的标量，而是一个服从时变概率分布的随机变量。因此，必须引入机会约束规划理论，将不确定的随机响应转化为具有明确置信度保障的?可靠调节域?。
+前文虽然构建了基于物理参数与用户设定的空调及电动汽车聚合体调节能力模型，但其本质属于确定性评估，仅刻画了聚合体在理想状态下的最大理论调节潜力。然而，在实际运行场景中，分布式资源的响应行为受到多源不确定性的深层耦合影响，用户侧的实时用能意愿、对激励价格的敏感度以及随机的出行需求导致单体响应具有显著的随机性。也即，聚合体在$t$时刻实际能够交付的调节功率并非一个确定的标量，而是一个服从时变概率分布的随机变量。因此，必须引入机会约束规划理论，将不确定的随机响应转化为具有明确置信度保障的可靠调节域。
 
-定义$t$时刻异构资源聚合体实际可提供的上调节功率为随机变量$\tilde{P}_{agg}^{up} (t)$，实际可提供的下调节功率为随机变量$\tilde{P}_{agg}^{dn} (t)$。假设$\xi _{t} $为影响该时刻调节能力的随机向量（包含用户行为状态、环境参数等），则实际调节能力可表示为关于$\xi _{t} $的函数。为了量化聚合体对电网调度的可靠性承诺，引入置信水平指标$\alpha $，其物理含义为聚合体实际交付功率覆盖调度指令的概率下限。
+定义$t$时刻异构资源聚合体实际可提供的上调节功率为随机变量$\tilde{P}_{agg}^{up} (t)$，实际可提供的下调节功率为随机变量$\tilde{P}_{agg}^{dn} (t)$。假设$\xi _{t} $为影响该时刻调节能力的随机向量，则实际调节能力可表示为关于$\xi _{t} $的函数。为了量化聚合体对电网调度的可靠性承诺，引入置信水平指标$\alpha $，其物理含义为聚合体实际交付功率覆盖调度指令的概率下限。
 
 对于上调节方向，可靠上调节边界$\bar{P}_{R} (t)$被定义为满足概率约束的最大功率值。即在给定的置信水平$\alpha $下，聚合体实际具备的上调节能力大于或等于该边界值的概率应成立。其数学模型可表述为：
 \begin{equation} \label{29)} 
@@ -1218,7 +1214,7 @@ $SDCI$指数的核心在于量化竞争与互补的关系。当$SDCI\to 0$时，
 
 \paragraph{ 空调与电动汽车时间相关性量化分析}
 
-互补性（SDCI）衡量的是能力幅值的重叠，而相关性衡量的是能力变化趋势的同步性。若两种资源的上调节能力总是同时增加或减少，即便幅值不同，也存在高度相关。本文采用斯皮尔曼秩相关系数（Spearman's$\rho $），它衡量两个变量，也即$\Delta P_{AC} (t)$和$\Delta P_{EV} (t)$的时间序列的单调关系的强度。相比皮尔逊（Pearson）相关系数，Spearman不要求变量呈线性关系，这更适用于空调和电动汽车这种由复杂物理过程和用户行为驱动的、高度非线性的调节能力曲线。
+互补性（SDCI）衡量的是能力幅值的重叠，而相关性衡量的是能力变化趋势的同步性。若两种资源的上调节能力总是同时增加或减少，即便幅值不同，也存在高度相关。本文采用斯皮尔曼秩相关系数（Spearman's$\rho $），它衡量两个变量，也即$\Delta P_{AC} (t)$和$\Delta P_{EV} (t)$的时间序列的单调关系的强度。相比皮尔逊（Pearson）相关系数，Spearman不要求变量呈线性关系，因此更适用于空调和电动汽车这种由物理和用户行为驱动的非线性的调节能力曲线。
 
 其计算步骤为：首先，生成空调和电动汽车的调节能力时间序列$\Delta P_{AC} (t)$和$\Delta P_{EV} (t)$（$t=1,2,...,n$）；接着，对两个序列分别进行排名，得到$rank(\Delta P_{AC} (t_{i} ))$和$rank(\Delta P_{EV} (t_{i} ))$；然后，计算每个时点$i$的差异平方和$d_{i} =rank(\Delta P_{AC} (t_{i} ))-rank(\Delta P_{EV} (t_{i} ))$；最后，计算斯皮尔曼秩相关系数$\rho $，其取值范围为$[-1,1]$，$n$为时间序列的长度。
 \begin{equation} \label{34)} 
@@ -1717,7 +1713,7 @@ Ax\le b
 
 \subsection{ 算例分析}
 
-为全面验证本文所提出的计及不确定性与互补性的协同随机调度策略的有效性，本章构建了一个包含大规模分布式异构资源的虚拟电厂仿真环境进行算例测试。测试系统基于改进后的IEEE30节点输电网络拓扑[94]，针对分布式资源物理（低压配网）与调度运行侧（高压输网）存在的层级差异，本算例采用了输配协同的层级抽象建模方法，从而解决海量微观资源直接接入输电网模型带来的``维数灾''问题，实现计算复杂度的有效解耦。模型基于分层控制理论，假设各节点下游配电网内部的电压与潮流约束已由虚拟电厂自行解决，从而将IEEE30系统的各节点定义为连接低压区域的聚合功率交换接口。在这一逻辑下，各节点处的功率变量不再指代单一物理设备，而是代表了该变电站供电区域内，经由聚合后的海量异构资源对输电主网的净注入功率。
+为全面验证本文所提出的计及不确定性与互补性的协同随机调度策略的有效性，本章构建了一个包含大规模分布式异构资源的虚拟电厂仿真环境进行算例测试。测试系统基于改进后的IEEE30节点输电网络拓扑[95]，针对分布式资源物理（低压配网）与调度运行侧（高压输网）存在的层级差异，本算例采用了输配协同的层级抽象建模方法，从而解决海量微观资源直接接入输电网模型带来的``维数灾''问题，实现计算复杂度的有效解耦。模型基于分层控制理论，假设各节点下游配电网内部的电压与潮流约束已由虚拟电厂自行解决，从而将IEEE30系统的各节点定义为连接低压区域的聚合功率交换接口。在这一逻辑下，各节点处的功率变量不再指代单一物理设备，而是代表了该变电站供电区域内，经由聚合后的海量异构资源对输电主网的净注入功率。
 
 在此架构下，系统共接入了由10000台空调和10000台电动汽车，如图 4-7所示，一共在21个节点接入了分布式资源聚合体，并在15$\mathrm{\sim}$30节点接入了总体渗透率为40\%的分布式光伏。仿真时间跨度设定为典型的24小时调度周期，时间步长为15分钟，共计96个调度时段。取夏季某典型工作日作为调度日，在聚合节点内部的微观行为方面：电动汽车假设有9000台在工作时间离家，返家后继续充电直至次日离网，另有1000台选择在工作区充电且返家后不充电；空调假设全天开启。
 
@@ -1750,7 +1746,7 @@ EV运行成本系数 & 元/MWh & 一次项：服从分时正态分布$N(\mu _{t}
 火电运行成本系数 & 元/MWh & 一次项：服从分时正态分布$N(\mu _{t} ,\sigma _{t}^{2} )$\newline 高峰时段 (10:00-12:00, 18:00-21:00): $\mu =1000,\sigma =100$\newline 低谷时段 (23:00-05:00): $\mu =600,\sigma =60$\newline 基准时段: $\mu =800,\sigma =80$ \\ \hline 
  & 元/(MW)${}^{2}$h & 二次项: $\mu _{c2} =50,\sigma _{c2} =5.0$ \\ \hline 
 切负荷/弃风光惩罚成本 & 元/MWh & 30000 \\ \hline 
-激励电价 & 元/MWh & 250 \\ \hline 
+激励电价 & 元/MWh & 300 \\ \hline 
 置信水平($\alpha $) & - & 0.95 \\ \hline 
 风险厌恶系数($\beta $) & - & 0,1,10 (分别对应风险中性、适度、厌恶) \\ \hline 
 违约惩罚单价($\rho _{pen} $) & 元/MW & 5000 \\ \hline 
@@ -1975,7 +1971,7 @@ EV运行成本系数 & 元/MWh & 一次项：服从分时正态分布$N(\mu _{t}
 \section{参考文献}
 
 \noindent 
-\section{[1] 辛保安, 单葆国, 李琼慧, 等. ?双碳?目标下?能源三要素?再思考[J]. 中国电机工程学报, 2022, 42\eqref{GrindEQ__9_}: 3117-3126.[2] 辛保安, 李明节, 贺静波, 等. 新型电力系统安全防御体系探究[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__15_}: 5723-5732.[3] 中共中央 国务院关于完整准确全面贯彻新发展理念做好碳达峰碳中和工作的意见[EB/OL]. [2025-11-12]. https://www.mee.gov.cn/zcwj/zyygwj/202110/t20211024\_957580.shtml?keywords=\%E7\%A2\%B3\%E8\%BE\%BE\%E5\%B3\%B0.[4] 中华人民共和国国务院新闻办公室. 碳达峰碳中和的中国行动：(2025年11月)[N]. 人民日报, 2025-11-09\eqref{GrindEQ__4_}.[5] 谢铖, 高宇, 郑怡. 新能源发电波动性对电网承载能力影响的评估技术研究[J]. 电工技术, 2025\eqref{GrindEQ__14_}: 86-90.[6] 滕贤亮, 谈超, 昌力, 等. 高比例新能源电力系统有功功率与频率控制研究综述及展望[J]. 电力系统自动化, 2023, 47\eqref{GrindEQ__15_}: 12-35.[7] 姜婷玉, 李亚平, 江叶峰, 等. 温控负荷提供电力系统辅助服务的关键技术综述[J]. 电力系统自动化, 2022, 46\eqref{GrindEQ__11_}: 191-207.[8] AHMADI S E, REZAEI N, KHAYYAM H. Energy management system of networked microgrids through optimal reliability-oriented day-ahead self-healing scheduling[J]. Sustainable Energy, Grids and Networks, 2020, 23: 100387.[9] LUO L, ABDULKAREEM S S, REZVANI A, 等. Optimal scheduling of a renewable based microgrid considering photovoltaic system and battery energy storage under uncertainty[J]. Journal of Energy Storage, 2020, 28: 101306.[10] 严兴煜, 高赐威, 陈涛, 等. 数字孪生虚拟电厂系统框架设计及其实践展望[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__2_}: 604-619.[11] 刘雨佳, 樊艳芳, 白雪岩, 等. 基于优化计算型区块链系统的虚拟电厂模型与调度策略[J]. 电工技术学报, 2023, 38\eqref{GrindEQ__15_}: 4178-4191.[12] REN J, ZENG Y, QIN C, 等. Characterization and application of flexible operation region of virtual power plant[J]. Applied Energy, 2024, 371: 123733.[13] LI B, PENG Y, SHUAI Z. Aggregated Modeling of Massive Heterogeneous Building HVAC Loads for Demand Response: A Fluid Dynamics Perspective[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__4_}: 3469-3472.[14] 吴润基, 王冬骁, 谢昌鸿, 等. 空调负荷参与配电网电压管理的分布式控制方法[J]. 电力系统自动化, 2021, 45\eqref{GrindEQ__6_}: 215-222.[15] EBRAHIMI M, RASTEGAR M. Data-Driven Charging Load Estimation of Behind-the-Meter V2G-Capable EVs[J]. IEEE Transactions on Industry Applications, 2023, 59\eqref{GrindEQ__6_}: 7949-7956.[16] ZHANG X, CHAN K W, LI H, 等. Deep-Learning-Based Probabilistic Forecasting of Electric Vehicle Charging Load With a Novel Queuing Model[J]. IEEE Transactions on Cybernetics, 2021, 51\eqref{GrindEQ__6_}: 3157-3170.[17] LANKESHWARA G, SHARMA R, YAN R, 等. A hierarchical control scheme for residential air-conditioning loads to provide real-time market services under uncertainties[J]. Energy, 2022, 250: 123796.[18] LIU J, AI X, CUI S, 等. Leveraging Time-Causal State Variable Aggregation for Real-Time Schedule of Massive Air Conditioners[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__3_}: 2389-2403.[19] C?RDOVA S, CA?IZARES C A, LORCA ?, 等. Aggregate Modeling of Thermostatically Controlled Loads for Microgrid Energy Management Systems[J]. IEEE Transactions on Smart Grid, 2023, 14\eqref{GrindEQ__6_}: 4169-4181.[20] FONTES F A C C, HALDER A, BECERRIL J, 等. Optimal Control of Thermostatic Loads for Planning Aggregate Consumption: Characterization of Solution and Explicit Strategies[J]. IEEE Control Systems Letters, 2019, 3\eqref{GrindEQ__4_}: 877-882.[21] TINDEMANS S H, STRBAC G. Low-Complexity Decentralized Algorithm for Aggregate Load Control of Thermostatic Loads[J]. IEEE Transactions on Industry Applications, 2021, 57\eqref{GrindEQ__1_}: 987-998.[22] HAJIPOUR E, SABER H, FARZIN N, 等. An Improved Aggregated Model of Residential Air Conditioners for FIDVR Studies[J]. IEEE Transactions on Power Systems, 2020, 35\eqref{GrindEQ__2_}: 909-919.[23] 杨炜晨, 苗世洪, 刘志伟, 等. 面向分布式电源功率波动平抑的变频空调集群多时间尺度模型预测控制策略[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__19_}: 4848-4861.[24] SHABSHAB S C, LINDAHL P A, NOWOCIN J K, 等. Demand Smoothing in Military Microgrids Through Coordinated Direct Load Control[J]. IEEE Transactions on Smart Grid, 2020, 11\eqref{GrindEQ__3_}: 1917-1927.[25] TINDEMANS S H, STRBAC G. Low-Complexity Decentralized Algorithm for Aggregate Load Control of Thermostatic Loads[J]. IEEE Transactions on Industry Applications, 2021, 57\eqref{GrindEQ__1_}: 987-998.[26] WANG J, QIU R, XU B, 等. Aggregated large-scale air-conditioning load: Modeling and response capability evaluation of virtual generator units[J]. Energy, 2023, 276: 127570.[27] SONG M, GAO C, YAN H, 等. Thermal Battery Modeling of Inverter Air Conditioning for Demand Response[J]. IEEE Transactions on Smart Grid, 2018, 9\eqref{GrindEQ__6_}: 5522-5534.[28] HUANG W, CHANG X, XUE Y, 等. Multiple-Time-Scale energy management strategy for virtual power plants considering dynamic weights and a Data-Model driven prediction model[J]. International Journal of Electrical Power \& Energy Systems, 2025, 172: 111229.[29] WEN Y, HU Z, YOU S, 等. Aggregate Feasible Region of DERs: Exact Formulation and Approximate Models[J]. IEEE Transactions on Smart Grid, 2022, 13\eqref{GrindEQ__6_}: 4405-4423.[30] WANG M, MU Y, LI F, 等. State Space Model of Aggregated Electric Vehicles for Frequency Regulation[J]. IEEE Transactions on Smart Grid, 2020, 11\eqref{GrindEQ__2_}: 981-994.[31] WANG B, ZHAO D, DEHGHANIAN P, 等. Aggregated Electric Vehicle Load Modeling in Large-Scale Electric Power Systems[J]. IEEE Transactions on Industry Applications, 2020, 56\eqref{GrindEQ__5_}: 5796-5810.[32] CHEN L, YU T, CHEN Y, 等. Real-Time Optimal Scheduling of Large-Scale Electric Vehicles: A Dynamic Non-Cooperative Game Approach[J]. IEEE Access, 2020, 8: 133633-133644.[33] LI D, ZHANG K, YAO Y, 等. Clustering and Markov Model of Plug-In Electric Vehicle Charging Profiles for Peak Shaving Applications[J]. International Transactions on Electrical Energy Systems, 2022, 2022\eqref{GrindEQ__1_}: 5006110.[34] REZAEIMOZAFAR M, ESKANDARI M, SAVKIN A V. A Self-Optimizing Scheduling Model for Large-Scale EV Fleets in Microgrids[J]. IEEE Transactions on Industrial Informatics, 2021, 17\eqref{GrindEQ__12_}: 8177-8188.[35] 仪忠凯, 侯朗博, 徐英, 等. 市场环境下灵活性资源虚拟电厂聚合调控关键技术综述[J]. 中国电力, 2024, 57\eqref{GrindEQ__12_}: 82-96.[36] LI Q, LIU J, CUI B, 等. Distribution System Flexibility Characterization: A Network-Informed Data-Driven Approach[J]. IEEE Transactions on Smart Grid, 2024, 15\eqref{GrindEQ__1_}: 1188-1191.[37] WANG S, DU L, CUI B, 等. Multi-Factor-Coupled, Ahead-of-Time Aggregation of Power Flexibility Under Forecast Uncertainty[J]. IEEE Transactions on Sustainable Energy, 2025, 16\eqref{GrindEQ__2_}: 892-903.[38] DAI W, LI D, LIU H, 等. A Cost Surrogate Model for TSO-DSO Coordination Based on Polynomial Chaos Expansion[J]. IEEE Transactions on Power Systems, 2025, 40\eqref{GrindEQ__4_}: 3580-3583.[39] 杨镜司, 秦文萍, 史文龙, 等. 基于电动汽车参与调峰定价策略的区域电网两阶段优化调度[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__1_}: 58-71.[40] DONG L, WU Q, HONG J, 等. An adaptive decentralized regulation strategy for the cluster with massive inverter air conditionings[J]. Applied Energy, 2023, 330: 120304.[41] 田济源, 范帅, 杨冬阳, 等. 考虑负荷静态电压特性的虚拟电厂精准调控方法[J]. 电工技术学报, 2025, 40\eqref{GrindEQ__15_}: 4770-4787.[42] BAHLOUL M, BREATHNACH L, KHADEM S. Residential Virtual Power Plant Control: A Novel Hierarchical Multi-Objective Optimization Approach[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__2_}: 1301-1313.[43] 王磊, 徐志龙, 杨晨宇, 等. 虚拟电厂集群电-碳联合优化建模及求解方法[J]. 电力系统自动化, 2024, 48\eqref{GrindEQ__23_}: 29-40.[44] 郭梦婕, 王晗, 严正, 等. 基于光量子计算机的虚拟电厂分布式资源解聚合优化方法[J]. 中国电机工程学报, 2025, 45\eqref{GrindEQ__8_}: 2936-2946.[45] 孔祥玉, 马玉莹, 艾芊, 等. 新型电力系统多元用户的用电特征建模与用电负荷预测综述[J]. 电力系统自动化, 2023, 47\eqref{GrindEQ__13_}: 2-17.[46] 胡俊杰, 赖信辉, 郭伟, 等. 考虑电动汽车灵活性与风电消纳的区域电网多时间尺度调度[J]. 电力系统自动化, 2022, 46\eqref{GrindEQ__16_}: 52-60.[47] 程杉, 黄天力, 魏荣宗. 含冰蓄冷空调的冷热电联供型微网多时间尺度优化调度[J]. 电力系统自动化, 2019, 43\eqref{GrindEQ__5_}: 30-38.[48] 莫理莉, 兰峻焜, 周亮, 等. 虚拟电厂下灵活资源多时间尺度调频控制[J]. 电力系统自动化, 2024, 48\eqref{GrindEQ__18_}: 76-86.[49] 张靖, 张志文, 胡斯佳, 等. 独立微电网风储协同调频的功率柔性分配策略[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__15_}: 3767-3780.[50] 翟苏巍, 李文云, 邱振宇, 等. 基于深度强化学习的风储合作决策方法[J]. 智慧电力, 2023, 51\eqref{GrindEQ__9_}: 60-65.[51] 牟长兴, 张俊涛, 程春田, 等. 考虑时空相关性的流域水风光多能互补系统高维不确定性场景生成方法[J]. 电网技术: 1-13.[52] 程定一, 马欢, 杨冬, 等. 计及碳排放和空调负荷的源网荷协同调度技术研究[J]. 山东电力技术, 2022, 49\eqref{GrindEQ__11_}: 20-24.[53] YANG T, WANG J, LIANG Y, 等. Economic Dispatch between Distribution Grids and Virtual Power Plants under Voltage Security Constraints[J]. Energies, 2023, 17\eqref{GrindEQ__1_}: 117.[54] 侯慧, 薛梦雅, 陈国炎, 等. 计及电动汽车充放电的微电网多目标分级经济调度[J]. 电力系统自动化, 2019, 43\eqref{GrindEQ__17_}: 55-62.[55] 康靖, 李雨桐, 郝斌, 等. 多联机空调柔性负荷参与电力系统需求响应的实证研究[J]. 供用电, 2022, 39\eqref{GrindEQ__8_}: 39-46.[56] 严兴煜, 高赐威, 陈涛, 等. 数字孪生虚拟电厂系统框架设计及其实践展望[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__2_}: 604-619.[57] 鲁宇, 马永翔, 马卓成, 等. 基于主从博弈的含电动汽车虚拟电厂区间优化调度[J]. 电工技术, 2024\eqref{GrindEQ__21_}: 20-26.[58] 吴巨爱, 薛禹胜, 谢东亮, 等. 电动汽车参与电量市场与备用市场的联合风险调度[J]. 电工技术学报, 2023, 38\eqref{GrindEQ__23_}: 6407-6418.[59] 李力, 董密, 宋冬然, 等. 分布式的温控负荷集群负荷跟随控制[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__21_}: 8270-8282.[60] 毛玲, 张钟浩, 赵晋斌, 等. 车-桩-网交融技术研究现状及展望[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__24_}: 6357-6371.[61] YAO Y, ZHANG P, CHEN S. Aggregating Large-Scale Generalized Energy Storages to Participate in Energy Market and Regulation Market[EB/OL]. arXiv, 2019[2024-05-29]. http://arxiv.org/abs/1901.03941.[62] 路石, 杨浩, 姜斌. 基于前景理论的行为安全博弈[J]. 中国科学:信息科学, 2024, 54\eqref{GrindEQ__1_}: 210-226.[63] 蔡国伟, 姜雨晴, 黄南天, 等. 电力需求响应机制下基于多主体双层博弈的规模化电动汽车充放电优化调度[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__1_}: 85-99.[64] WANG C N, NGUYEN H K, NHIEU N L. Integrating prospect theory with DEA for renewable energy investment evaluation in South America[J]. Renewable Energy, 2025, 247: 123018.[65] 陈启鑫, 吕睿可, 郭鸿业, 等. 面向需求响应的电力用户行为建模：研究现状与应用[J]. 电力自动化设备, 2023, 43\eqref{GrindEQ__10_}: 23-37.[66] JHALA K, NATARAJAN B, PAHWA A. Prospect Theory-Based Active Consumer Behavior Under Variable Electricity Pricing[J]. IEEE Transactions on Smart Grid, 2019, 10\eqref{GrindEQ__3_}: 2809-2819.[67] TVERSKY A, KAHNEMAN D. Loss Aversion in Riskless Choice: A Reference-Dependent Model[J]. The Quarterly Journal of Economics, 1991, 106\eqref{GrindEQ__4_}: 1039-1061.[68] 王冠然. 含电动汽车的虚拟电厂运行优化与效益评价研究[D/OL]. 华北电力大学（北京）, 2024[2024-12-03]. https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD\&dbname=CMFD202401\&filename=1023131699.nh.[69] 林宏宇. 电动汽车聚合商网源荷分级优化及效益评价模型研究[D/OL]. 华北电力大学（北京）, 2024[2024-12-10]. https://link.cnki.net/doi/10.27140/d.cnki.ghbbu.2024.000136.[70] 山东省电力辅助服务管理实施细则[J].[71] 泰安市发展和改革委员会 优化营商环境政策文件及配套措施 山东省发改委：关于进一步完善居民电动汽车充电桩分时电价政策的通知(鲁发改价格〔2023〕594号)[EB/OL]. [2026-01-22]. https://fgw.taian.gov.cn/art/2023/8/1/art\_213812\_10303262.html.[72] 国家发展改革委, {}国家能源局, 工业和信息化部, 等. 国家发展改革委等部门关于加强新能源汽车与电网融合互动的实施意见: 发改能源〔2023〕1721号[EB/OL]. (2023-12-13)[2026-01-22]. https://www.gov.cn/zhengce/zhengceku/202401/content\_6924347.htm.[73] 用电也能赚钱？虚拟电厂让企业?低谷用电领补贴，缺电调负荷赚收益? - OFweek电力网[EB/OL]. [2026-01-22]. https://power.ofweek.com/2025-05/ART-35001-8500-30662345.html.[74] 2024 BYD Yuan Plus First Drive Review: The Chinese Tesla Model Y?[EB/OL]. (2023-10-11)[2025-03-10]. https://www.motortrend.com/reviews/2024-byd-yuan-plus-first-drive-review/.[75] Tesla Model Y charging time, range, and cost {\textbar} EVBox[EB/OL]. [2025-03-10]. https://evbox.com/en/electric-cars/tesla/tesla-model-y.[76] BYD Yuan Plus Price, Range and Review[EB/OL]. [2025-03-10]. https://ev.motorwatt.com/ev-database/database-electric-cars/byd-yuan-plus.[77] BYD Qin Plus EV Price, Range and Review[EB/OL]. [2025-03-10]. https://ev.motorwatt.com/ev-database/database-electric-cars/byd-qin-plus-ev.[78] Tesla Model Y Real Range \& Battery Capacity / New vs Used / Winter vs Summer[EB/OL]. [2025-03-10]. https://www.recurrentauto.com/guides/tesla-model-y.[79] BYD Seagull[M/OL]//Wikipedia. (2025-02-21)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=BYD\_Seagull\&oldid=1276933428.[80] Tesla Model Y[M/OL]//Wikipedia. (2025-03-04)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=Tesla\_Model\_Y\&oldid=1278740465.[81] BYD Song[M/OL]//Wikipedia. (2025-02-12)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=BYD\_Song\&oldid=1275293796.[82] TOM. What were the best-selling EVs in China during 2024?[EB/OL]. (2025-02-24)[2025-03-10]. https://autovista24.autovistagroup.com/news/what-were-the-best-selling-evs-china-2024/.[83] 国家电网-辽宁省电力有限公司[EB/OL]. [2025-12-14]. http://www.ln.sgcc.com.cn/html/main/col3033/2024-08/27/20240827165237843598788\_1.html.[84] YI T, ZHANG C, LIN T, 等. Research on the spatial-temporal distribution of electric vehicle charging load demand: A case study in China[J]. Journal of Cleaner Production, 2020, 242: 118457.[85] 李含玉. 基于出行模拟的电动汽车充电负荷预测建模及V2G响应研究[D/OL]. 华南理工大学, 2019[2025-03-10]. https://link.cnki.net/doi/10.27151/d.cnki.ghnlu.2019.004058.[86] 李瑶虹, 陈良亮, 刘卫东, 等. 基于用户出行链和调控意愿的城市级私家电动汽车调控能力评估[J]. 电力建设, 2021, 42\eqref{GrindEQ__5_}: 100-112.[87] 鲍琼, 谭旭, 屈琦凯, 等. 基于用户时空活动与模糊决策的电动汽车充电需求预测[J]. 东南大学学报（自然科学版）, 2022, 52\eqref{GrindEQ__6_}: 1209-1218.[88] 薛景润, 施啸寒, 王超, 等. 兼顾物理状态和用户行为的虚拟电厂紧急功率调节能力量化评估[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__8_}: 2906-2921.[89] 李含玉. 基于出行模拟的电动汽车充电负荷预测建模及V2G响应研究[D/OL]. 华南理工大学, 2019[2024-12-22]. https://link.cnki.net/doi/10.27151/d.cnki.ghnlu.2019.004058.[90] 吴赋章, 杨军, 林洋佳, 等. 考虑用户有限理性的电动汽车时空行为特性[J]. 电工技术学报, 2020, 35\eqref{GrindEQ__7_}: 1563-1574.[91] 潘胤吉, 邱晓燕, 吴甲武, 等. 基于马尔可夫决策过程的电动汽车充电行为分析[J]. 电力建设, 2018, 39\eqref{GrindEQ__7_}: 129-137.[92] 龙雪梅, 杨军, 吴赋章, 等. 考虑路网-电网交互和用户心理的电动汽车充电负荷预测[J]. 电力系统自动化, 2020, 44\eqref{GrindEQ__14_}: 86-93.[93] YI T, ZHANG C, LIN T, 等. Research on the spatial-temporal distribution of electric vehicle charging load demand: A case study in China[J]. Journal of Cleaner Production, 2020, 242: 118457.[94] Description of case\_ieee30[EB/OL]. [2025-12-09]. https://matpower.org/docs/ref/matpower5.0/case\_ieee30.html.致    谢}
+\section{[1] 辛保安, 单葆国, 李琼慧, 等. ?双碳?目标下?能源三要素?再思考[J]. 中国电机工程学报, 2022, 42\eqref{GrindEQ__9_}: 3117-3126.[2] 辛保安, 李明节, 贺静波, 等. 新型电力系统安全防御体系探究[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__15_}: 5723-5732.[3] 中共中央 国务院关于完整准确全面贯彻新发展理念做好碳达峰碳中和工作的意见[EB/OL]. [2025-11-12]. https://www.mee.gov.cn/zcwj/zyygwj/202110/t20211024\_957580.shtml?keywords=\%E7\%A2\%B3\%E8\%BE\%BE\%E5\%B3\%B0.[4] 中华人民共和国国务院新闻办公室. 碳达峰碳中和的中国行动：(2025年11月)[N]. 人民日报, 2025-11-09\eqref{GrindEQ__4_}.[5] 谢铖, 高宇, 郑怡. 新能源发电波动性对电网承载能力影响的评估技术研究[J]. 电工技术, 2025\eqref{GrindEQ__14_}: 86-90.[6] 滕贤亮, 谈超, 昌力, 等. 高比例新能源电力系统有功功率与频率控制研究综述及展望[J]. 电力系统自动化, 2023, 47\eqref{GrindEQ__15_}: 12-35.[7] 姜婷玉, 李亚平, 江叶峰, 等. 温控负荷提供电力系统辅助服务的关键技术综述[J]. 电力系统自动化, 2022, 46\eqref{GrindEQ__11_}: 191-207.[8] AHMADI S E, REZAEI N, KHAYYAM H. Energy management system of networked microgrids through optimal reliability-oriented day-ahead self-healing scheduling[J]. Sustainable Energy, Grids and Networks, 2020, 23: 100387.[9] LUO L, ABDULKAREEM S S, REZVANI A, 等. Optimal scheduling of a renewable based microgrid considering photovoltaic system and battery energy storage under uncertainty[J]. Journal of Energy Storage, 2020, 28: 101306.[10] 严兴煜, 高赐威, 陈涛, 等. 数字孪生虚拟电厂系统框架设计及其实践展望[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__2_}: 604-619.[11] 刘雨佳, 樊艳芳, 白雪岩, 等. 基于优化计算型区块链系统的虚拟电厂模型与调度策略[J]. 电工技术学报, 2023, 38\eqref{GrindEQ__15_}: 4178-4191.[12] REN J, ZENG Y, QIN C, 等. Characterization and application of flexible operation region of virtual power plant[J]. Applied Energy, 2024, 371: 123733.[13] LI B, PENG Y, SHUAI Z. Aggregated Modeling of Massive Heterogeneous Building HVAC Loads for Demand Response: A Fluid Dynamics Perspective[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__4_}: 3469-3472.[14] 吴润基, 王冬骁, 谢昌鸿, 等. 空调负荷参与配电网电压管理的分布式控制方法[J]. 电力系统自动化, 2021, 45\eqref{GrindEQ__6_}: 215-222.[15] EBRAHIMI M, RASTEGAR M. Data-Driven Charging Load Estimation of Behind-the-Meter V2G-Capable EVs[J]. IEEE Transactions on Industry Applications, 2023, 59\eqref{GrindEQ__6_}: 7949-7956.[16] ZHANG X, CHAN K W, LI H, 等. Deep-Learning-Based Probabilistic Forecasting of Electric Vehicle Charging Load With a Novel Queuing Model[J]. IEEE Transactions on Cybernetics, 2021, 51\eqref{GrindEQ__6_}: 3157-3170.[17] LANKESHWARA G, SHARMA R, YAN R, 等. A hierarchical control scheme for residential air-conditioning loads to provide real-time market services under uncertainties[J]. Energy, 2022, 250: 123796.[18] LIU J, AI X, CUI S, 等. Leveraging Time-Causal State Variable Aggregation for Real-Time Schedule of Massive Air Conditioners[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__3_}: 2389-2403.[19] C?RDOVA S, CA?IZARES C A, LORCA ?, 等. Aggregate Modeling of Thermostatically Controlled Loads for Microgrid Energy Management Systems[J]. IEEE Transactions on Smart Grid, 2023, 14\eqref{GrindEQ__6_}: 4169-4181.[20] FONTES F A C C, HALDER A, BECERRIL J, 等. Optimal Control of Thermostatic Loads for Planning Aggregate Consumption: Characterization of Solution and Explicit Strategies[J]. IEEE Control Systems Letters, 2019, 3\eqref{GrindEQ__4_}: 877-882.[21] TINDEMANS S H, STRBAC G. Low-Complexity Decentralized Algorithm for Aggregate Load Control of Thermostatic Loads[J]. IEEE Transactions on Industry Applications, 2021, 57\eqref{GrindEQ__1_}: 987-998.[22] HAJIPOUR E, SABER H, FARZIN N, 等. An Improved Aggregated Model of Residential Air Conditioners for FIDVR Studies[J]. IEEE Transactions on Power Systems, 2020, 35\eqref{GrindEQ__2_}: 909-919.[23] 杨炜晨, 苗世洪, 刘志伟, 等. 面向分布式电源功率波动平抑的变频空调集群多时间尺度模型预测控制策略[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__19_}: 4848-4861.[24] SHABSHAB S C, LINDAHL P A, NOWOCIN J K, 等. Demand Smoothing in Military Microgrids Through Coordinated Direct Load Control[J]. IEEE Transactions on Smart Grid, 2020, 11\eqref{GrindEQ__3_}: 1917-1927.[25] TINDEMANS S H, STRBAC G. Low-Complexity Decentralized Algorithm for Aggregate Load Control of Thermostatic Loads[J]. IEEE Transactions on Industry Applications, 2021, 57\eqref{GrindEQ__1_}: 987-998.[26] WANG J, QIU R, XU B, 等. Aggregated large-scale air-conditioning load: Modeling and response capability evaluation of virtual generator units[J]. Energy, 2023, 276: 127570.[27] SONG M, GAO C, YAN H, 等. Thermal Battery Modeling of Inverter Air Conditioning for Demand Response[J]. IEEE Transactions on Smart Grid, 2018, 9\eqref{GrindEQ__6_}: 5522-5534.[28] HUANG W, CHANG X, XUE Y, 等. Multiple-Time-Scale energy management strategy for virtual power plants considering dynamic weights and a Data-Model driven prediction model[J]. International Journal of Electrical Power \& Energy Systems, 2025, 172: 111229.[29] WEN Y, HU Z, YOU S, 等. Aggregate Feasible Region of DERs: Exact Formulation and Approximate Models[J]. IEEE Transactions on Smart Grid, 2022, 13\eqref{GrindEQ__6_}: 4405-4423.[30] WANG M, MU Y, LI F, 等. State Space Model of Aggregated Electric Vehicles for Frequency Regulation[J]. IEEE Transactions on Smart Grid, 2020, 11\eqref{GrindEQ__2_}: 981-994.[31] WANG B, ZHAO D, DEHGHANIAN P, 等. Aggregated Electric Vehicle Load Modeling in Large-Scale Electric Power Systems[J]. IEEE Transactions on Industry Applications, 2020, 56\eqref{GrindEQ__5_}: 5796-5810.[32] CHEN L, YU T, CHEN Y, 等. Real-Time Optimal Scheduling of Large-Scale Electric Vehicles: A Dynamic Non-Cooperative Game Approach[J]. IEEE Access, 2020, 8: 133633-133644.[33] LI D, ZHANG K, YAO Y, 等. Clustering and Markov Model of Plug-In Electric Vehicle Charging Profiles for Peak Shaving Applications[J]. International Transactions on Electrical Energy Systems, 2022, 2022\eqref{GrindEQ__1_}: 5006110.[34] REZAEIMOZAFAR M, ESKANDARI M, SAVKIN A V. A Self-Optimizing Scheduling Model for Large-Scale EV Fleets in Microgrids[J]. IEEE Transactions on Industrial Informatics, 2021, 17\eqref{GrindEQ__12_}: 8177-8188.[35] 仪忠凯, 侯朗博, 徐英, 等. 市场环境下灵活性资源虚拟电厂聚合调控关键技术综述[J]. 中国电力, 2024, 57\eqref{GrindEQ__12_}: 82-96.[36] LI Q, LIU J, CUI B, 等. Distribution System Flexibility Characterization: A Network-Informed Data-Driven Approach[J]. IEEE Transactions on Smart Grid, 2024, 15\eqref{GrindEQ__1_}: 1188-1191.[37] WANG S, DU L, CUI B, 等. Multi-Factor-Coupled, Ahead-of-Time Aggregation of Power Flexibility Under Forecast Uncertainty[J]. IEEE Transactions on Sustainable Energy, 2025, 16\eqref{GrindEQ__2_}: 892-903.[38] DAI W, LI D, LIU H, 等. A Cost Surrogate Model for TSO-DSO Coordination Based on Polynomial Chaos Expansion[J]. IEEE Transactions on Power Systems, 2025, 40\eqref{GrindEQ__4_}: 3580-3583.[39] 杨镜司, 秦文萍, 史文龙, 等. 基于电动汽车参与调峰定价策略的区域电网两阶段优化调度[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__1_}: 58-71.[40] DONG L, WU Q, HONG J, 等. An adaptive decentralized regulation strategy for the cluster with massive inverter air conditionings[J]. Applied Energy, 2023, 330: 120304.[41] 田济源, 范帅, 杨冬阳, 等. 考虑负荷静态电压特性的虚拟电厂精准调控方法[J]. 电工技术学报, 2025, 40\eqref{GrindEQ__15_}: 4770-4787.[42] BAHLOUL M, BREATHNACH L, KHADEM S. Residential Virtual Power Plant Control: A Novel Hierarchical Multi-Objective Optimization Approach[J]. IEEE Transactions on Smart Grid, 2025, 16\eqref{GrindEQ__2_}: 1301-1313.[43] 王磊, 徐志龙, 杨晨宇, 等. 虚拟电厂集群电-碳联合优化建模及求解方法[J]. 电力系统自动化, 2024, 48\eqref{GrindEQ__23_}: 29-40.[44] 郭梦婕, 王晗, 严正, 等. 基于光量子计算机的虚拟电厂分布式资源解聚合优化方法[J]. 中国电机工程学报, 2025, 45\eqref{GrindEQ__8_}: 2936-2946.[45] 孔祥玉, 马玉莹, 艾芊, 等. 新型电力系统多元用户的用电特征建模与用电负荷预测综述[J]. 电力系统自动化, 2023, 47\eqref{GrindEQ__13_}: 2-17.[46] 胡俊杰, 赖信辉, 郭伟, 等. 考虑电动汽车灵活性与风电消纳的区域电网多时间尺度调度[J]. 电力系统自动化, 2022, 46\eqref{GrindEQ__16_}: 52-60.[47] 程杉, 黄天力, 魏荣宗. 含冰蓄冷空调的冷热电联供型微网多时间尺度优化调度[J]. 电力系统自动化, 2019, 43\eqref{GrindEQ__5_}: 30-38.[48] 莫理莉, 兰峻焜, 周亮, 等. 虚拟电厂下灵活资源多时间尺度调频控制[J]. 电力系统自动化, 2024, 48\eqref{GrindEQ__18_}: 76-86.[49] 张靖, 张志文, 胡斯佳, 等. 独立微电网风储协同调频的功率柔性分配策略[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__15_}: 3767-3780.[50] 翟苏巍, 李文云, 邱振宇, 等. 基于深度强化学习的风储合作决策方法[J]. 智慧电力, 2023, 51\eqref{GrindEQ__9_}: 60-65.[51] 牟长兴, 张俊涛, 程春田, 等. 考虑时空相关性的流域水风光多能互补系统高维不确定性场景生成方法[J]. 电网技术: 1-13.[52] 程定一, 马欢, 杨冬, 等. 计及碳排放和空调负荷的源网荷协同调度技术研究[J]. 山东电力技术, 2022, 49\eqref{GrindEQ__11_}: 20-24.[53] YANG T, WANG J, LIANG Y, 等. Economic Dispatch between Distribution Grids and Virtual Power Plants under Voltage Security Constraints[J]. Energies, 2023, 17\eqref{GrindEQ__1_}: 117.[54] 侯慧, 薛梦雅, 陈国炎, 等. 计及电动汽车充放电的微电网多目标分级经济调度[J]. 电力系统自动化, 2019, 43\eqref{GrindEQ__17_}: 55-62.[55] 康靖, 李雨桐, 郝斌, 等. 多联机空调柔性负荷参与电力系统需求响应的实证研究[J]. 供用电, 2022, 39\eqref{GrindEQ__8_}: 39-46.[56] 严兴煜, 高赐威, 陈涛, 等. 数字孪生虚拟电厂系统框架设计及其实践展望[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__2_}: 604-619.[57] 鲁宇, 马永翔, 马卓成, 等. 基于主从博弈的含电动汽车虚拟电厂区间优化调度[J]. 电工技术, 2024\eqref{GrindEQ__21_}: 20-26.[58] 吴巨爱, 薛禹胜, 谢东亮, 等. 电动汽车参与电量市场与备用市场的联合风险调度[J]. 电工技术学报, 2023, 38\eqref{GrindEQ__23_}: 6407-6418.[59] 刘晓明, 綦陆杰, 梁啸林, 等. 考虑物理特性与市场激励的分布式温控负荷聚合建模方法[J/OL]. 山东电力技术, 2026[2026-01-28]. https://doi.org/10.20097/j.cnki.issn1007-9904.250619.[60] 李力, 董密, 宋冬然, 等. 分布式的温控负荷集群负荷跟随控制[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__21_}: 8270-8282.[61] 毛玲, 张钟浩, 赵晋斌, 等. 车-桩-网交融技术研究现状及展望[J]. 电工技术学报, 2022, 37\eqref{GrindEQ__24_}: 6357-6371.[62] YAO Y, ZHANG P, CHEN S. Aggregating Large-Scale Generalized Energy Storages to Participate in Energy Market and Regulation Market[EB/OL]. arXiv, 2019[2024-05-29]. http://arxiv.org/abs/1901.03941.[63] 路石, 杨浩, 姜斌. 基于前景理论的行为安全博弈[J]. 中国科学:信息科学, 2024, 54\eqref{GrindEQ__1_}: 210-226.[64] 蔡国伟, 姜雨晴, 黄南天, 等. 电力需求响应机制下基于多主体双层博弈的规模化电动汽车充放电优化调度[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__1_}: 85-99.[65] WANG C N, NGUYEN H K, NHIEU N L. Integrating prospect theory with DEA for renewable energy investment evaluation in South America[J]. Renewable Energy, 2025, 247: 123018.[66] 陈启鑫, 吕睿可, 郭鸿业, 等. 面向需求响应的电力用户行为建模：研究现状与应用[J]. 电力自动化设备, 2023, 43\eqref{GrindEQ__10_}: 23-37.[67] JHALA K, NATARAJAN B, PAHWA A. Prospect Theory-Based Active Consumer Behavior Under Variable Electricity Pricing[J]. IEEE Transactions on Smart Grid, 2019, 10\eqref{GrindEQ__3_}: 2809-2819.[68] TVERSKY A, KAHNEMAN D. Loss Aversion in Riskless Choice: A Reference-Dependent Model[J]. The Quarterly Journal of Economics, 1991, 106\eqref{GrindEQ__4_}: 1039-1061.[69] 王冠然. 含电动汽车的虚拟电厂运行优化与效益评价研究[D/OL]. 华北电力大学（北京）, 2024[2024-12-03]. https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD\&dbname=CMFD202401\&filename=1023131699.nh.[70] 林宏宇. 电动汽车聚合商网源荷分级优化及效益评价模型研究[D/OL]. 华北电力大学（北京）, 2024[2024-12-10]. https://link.cnki.net/doi/10.27140/d.cnki.ghbbu.2024.000136.[71] 山东省电力辅助服务管理实施细则[J].[72] 泰安市发展和改革委员会 优化营商环境政策文件及配套措施 山东省发改委：关于进一步完善居民电动汽车充电桩分时电价政策的通知(鲁发改价格〔2023〕594号)[EB/OL]. [2026-01-22]. https://fgw.taian.gov.cn/art/2023/8/1/art\_213812\_10303262.html.[73] 国家发展改革委, {}国家能源局, 工业和信息化部, 等. 国家发展改革委等部门关于加强新能源汽车与电网融合互动的实施意见: 发改能源〔2023〕1721号[EB/OL]. (2023-12-13)[2026-01-22]. https://www.gov.cn/zhengce/zhengceku/202401/content\_6924347.htm.[74] 用电也能赚钱？虚拟电厂让企业?低谷用电领补贴，缺电调负荷赚收益? - OFweek电力网[EB/OL]. [2026-01-22]. https://power.ofweek.com/2025-05/ART-35001-8500-30662345.html.[75] 2024 BYD Yuan Plus First Drive Review: The Chinese Tesla Model Y?[EB/OL]. (2023-10-11)[2025-03-10]. https://www.motortrend.com/reviews/2024-byd-yuan-plus-first-drive-review/.[76] Tesla Model Y charging time, range, and cost {\textbar} EVBox[EB/OL]. [2025-03-10]. https://evbox.com/en/electric-cars/tesla/tesla-model-y.[77] BYD Yuan Plus Price, Range and Review[EB/OL]. [2025-03-10]. https://ev.motorwatt.com/ev-database/database-electric-cars/byd-yuan-plus.[78] BYD Qin Plus EV Price, Range and Review[EB/OL]. [2025-03-10]. https://ev.motorwatt.com/ev-database/database-electric-cars/byd-qin-plus-ev.[79] Tesla Model Y Real Range \& Battery Capacity / New vs Used / Winter vs Summer[EB/OL]. [2025-03-10]. https://www.recurrentauto.com/guides/tesla-model-y.[80] BYD Seagull[M/OL]//Wikipedia. (2025-02-21)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=BYD\_Seagull\&oldid=1276933428.[81] Tesla Model Y[M/OL]//Wikipedia. (2025-03-04)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=Tesla\_Model\_Y\&oldid=1278740465.[82] BYD Song[M/OL]//Wikipedia. (2025-02-12)[2025-03-10]. https://en.wikipedia.org/w/index.php?title=BYD\_Song\&oldid=1275293796.[83] TOM. What were the best-selling EVs in China during 2024?[EB/OL]. (2025-02-24)[2025-03-10]. https://autovista24.autovistagroup.com/news/what-were-the-best-selling-evs-china-2024/.[84] 国家电网-辽宁省电力有限公司[EB/OL]. [2025-12-14]. http://www.ln.sgcc.com.cn/html/main/col3033/2024-08/27/20240827165237843598788\_1.html.[85] YI T, ZHANG C, LIN T, 等. Research on the spatial-temporal distribution of electric vehicle charging load demand: A case study in China[J]. Journal of Cleaner Production, 2020, 242: 118457.[86] 李含玉. 基于出行模拟的电动汽车充电负荷预测建模及V2G响应研究[D/OL]. 华南理工大学, 2019[2025-03-10]. https://link.cnki.net/doi/10.27151/d.cnki.ghnlu.2019.004058.[87] 李瑶虹, 陈良亮, 刘卫东, 等. 基于用户出行链和调控意愿的城市级私家电动汽车调控能力评估[J]. 电力建设, 2021, 42\eqref{GrindEQ__5_}: 100-112.[88] 鲍琼, 谭旭, 屈琦凯, 等. 基于用户时空活动与模糊决策的电动汽车充电需求预测[J]. 东南大学学报（自然科学版）, 2022, 52\eqref{GrindEQ__6_}: 1209-1218.[89] 薛景润, 施啸寒, 王超, 等. 兼顾物理状态和用户行为的虚拟电厂紧急功率调节能力量化评估[J]. 中国电机工程学报, 2023, 43\eqref{GrindEQ__8_}: 2906-2921.[90] 李含玉. 基于出行模拟的电动汽车充电负荷预测建模及V2G响应研究[D/OL]. 华南理工大学, 2019[2024-12-22]. https://link.cnki.net/doi/10.27151/d.cnki.ghnlu.2019.004058.[91] 吴赋章, 杨军, 林洋佳, 等. 考虑用户有限理性的电动汽车时空行为特性[J]. 电工技术学报, 2020, 35\eqref{GrindEQ__7_}: 1563-1574.[92] 潘胤吉, 邱晓燕, 吴甲武, 等. 基于马尔可夫决策过程的电动汽车充电行为分析[J]. 电力建设, 2018, 39\eqref{GrindEQ__7_}: 129-137.[93] 龙雪梅, 杨军, 吴赋章, 等. 考虑路网-电网交互和用户心理的电动汽车充电负荷预测[J]. 电力系统自动化, 2020, 44\eqref{GrindEQ__14_}: 86-93.[94] YI T, ZHANG C, LIN T, 等. Research on the spatial-temporal distribution of electric vehicle charging load demand: A case study in China[J]. Journal of Cleaner Production, 2020, 242: 118457.[95] Description of case\_ieee30[EB/OL]. [2025-12-09]. https://matpower.org/docs/ref/matpower5.0/case\_ieee30.html.致    谢}
 
 不知不觉，我长达18年的学生生涯就要结束了，恰好是一个人成人的时间。回首漫漫求学路，从小学的懵懂无知，到中学在学业上的疲于奔命，再到本科保研时的孤独，再到研究生三年的修身养性，我已然从幼稚的孩童，变为了半步踏入社会的青年。这其中，我成长速度最快的，莫过于研究生三年。
 
@@ -1995,7 +1991,7 @@ EV运行成本系数 & 元/MWh & 一次项：服从分时正态分布$N(\mu _{t}
 
 \noindent [1] FU T, ZHANG H, LI C, 等. Architecture Analysis and Performance Evaluation of STEPS[C/OL]//2023 International Conference on Power System Technology (PowerCon). 2023: 1-5.学生第1作者
 
-\noindent 
+\noindent [2] 刘晓明,綦陆杰,梁啸林,等.考虑物理特性与市场激励的分布式温控负荷聚合建模方法[J/OL].山东电力技术,1-9.学生第1作者
 
 \noindent 
 \subsection{2. 申请发明专利}
